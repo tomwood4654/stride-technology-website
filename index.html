@@ -74,10 +74,12 @@
   .logo { display: flex; align-items: center; gap: 0.55rem; }
   .logo svg { height: 26px; width: auto; display: block; }
   .logo span { font-family: 'Bitter', serif; font-weight: 700; font-size: 1.3rem; letter-spacing: 0.01em; }
-  nav.site-nav { display: flex; gap: 1.6rem; }
+  nav.site-nav { display: flex; align-items: center; gap: 1.5rem; }
   nav.site-nav a { font-size: 0.92rem; color: var(--ink-dim); text-decoration: none; }
   nav.site-nav a:hover { color: var(--ink); }
-  @media (max-width: 560px) { nav.site-nav { display: none; } }
+  nav.site-nav a.cta-link { color: var(--paper); background: var(--green); padding: 0.4rem 0.9rem; border-radius: 3px; font-weight: 600; }
+  nav.site-nav a.cta-link:hover { background: var(--gold); color: var(--ink); }
+  @media (max-width: 700px) { nav.site-nav a:not(.cta-link) { display: none; } }
 
   /* Hero */
   .hero { padding: 5.5rem 0 4.5rem; }
@@ -149,6 +151,24 @@
   .work-card p { margin-top: 0.6rem; color: var(--ink-dim); font-size: 0.92rem; }
   .work-card p.includes { margin-top: 0.9rem; padding-top: 0.9rem; border-top: 1px solid var(--line); font-size: 0.8rem; color: var(--ink-faint); }
 
+  /* Examples */
+  .example-grid { margin-top: 2.6rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.3rem; }
+  .example-card {
+    display: block; text-decoration: none; color: var(--ink);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
+    padding: 1.6rem 1.7rem; transition: border-color 0.2s ease;
+  }
+  .example-card:hover { border-color: var(--gold); }
+  .example-tag {
+    display: inline-block; font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 0.15rem 0.5rem; border-radius: 999px; background: color-mix(in srgb, var(--gold) 18%, transparent);
+    color: var(--gold); font-weight: 600;
+  }
+  .example-card h3 { font-size: 1.1rem; margin-top: 0.7rem; }
+  .example-card p { margin-top: 0.5rem; color: var(--ink-dim); font-size: 0.88rem; }
+  .example-link { display: block; margin-top: 1rem; font-weight: 600; font-size: 0.85rem; color: var(--gold); }
+  .example-note { margin-top: 1.4rem; font-size: 0.8rem; color: var(--ink-faint); }
+
   /* Founder note */
   .founder { display: grid; grid-template-columns: 220px 1fr; gap: 2.4rem; align-items: start; margin-top: 2.4rem; }
   @media (max-width: 620px) { .founder { grid-template-columns: 1fr; } }
@@ -169,6 +189,12 @@
   footer.site .wrap { display: flex; flex-direction: column; gap: 1rem; }
   footer.site .logo span { color: var(--green-ink); }
   footer.site .tagline { font-family: 'Bitter', serif; font-size: 1.15rem; max-width: 30ch; color: var(--green-ink); }
+  footer.site .contact-row { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.6rem; }
+  footer.site .contact-row a { color: var(--gold-bright); font-weight: 600; text-decoration: none; font-size: 0.95rem; }
+  footer.site .contact-row a:hover { text-decoration: underline; }
+  footer.site .legal-row { display: flex; gap: 1.2rem; flex-wrap: wrap; margin-top: 1rem; }
+  footer.site .legal-row a { font-size: 0.82rem; color: color-mix(in srgb, var(--green-ink) 70%, transparent); text-decoration: none; }
+  footer.site .legal-row a:hover { text-decoration: underline; }
   footer.site .note { font-size: 0.82rem; color: color-mix(in srgb, var(--green-ink) 65%, transparent); margin-top: 1.4rem; }
   footer.site .note + .note { margin-top: 0.4rem; }
 </style>
@@ -182,8 +208,11 @@
     </div>
     <nav class="site-nav">
       <a href="#what">What we do</a>
-      <a href="#how">How we start</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="#examples">Examples</a>
+      <a href="faq.html">FAQ</a>
       <a href="#why">About</a>
+      <a class="cta-link" href="https://wa.me/447880329549" target="_blank" rel="noopener">WhatsApp us</a>
     </nav>
   </div>
 </header>
@@ -252,6 +281,35 @@
   </div>
 </section>
 
+<section id="examples">
+  <div class="wrap reveal">
+    <div class="eyebrow">Examples</div>
+    <h2>See it for yourself</h2>
+    <p class="lede">Three example businesses, invented to show you what a real build looks like — not screenshots, genuine live sites you can click through.</p>
+    <div class="example-grid">
+      <a class="example-card" href="https://stride-example-plumbing.netlify.app" target="_blank" rel="noopener">
+        <span class="example-tag">Plumber</span>
+        <h3>Whitfield Plumbing &amp; Heating</h3>
+        <p>Family-run, emergency callouts, a straightforward trade site done properly.</p>
+        <span class="example-link">View live example →</span>
+      </a>
+      <a class="example-card" href="https://stride-example-pub.netlify.app" target="_blank" rel="noopener">
+        <span class="example-tag">Pub</span>
+        <h3>The Crown &amp; Anchor</h3>
+        <p>Traditional village pub — menu, opening hours, and the character to match.</p>
+        <span class="example-link">View live example →</span>
+      </a>
+      <a class="example-card" href="https://stride-example-chippy.netlify.app" target="_blank" rel="noopener">
+        <span class="example-tag">Takeaway</span>
+        <h3>Harbour Fish &amp; Chips</h3>
+        <p>Seaside chip shop — menu board, hours, and a proper sense of place.</p>
+        <span class="example-link">View live example →</span>
+      </a>
+    </div>
+    <p class="example-note">These three are invented, built to demonstrate the range of what we can do — not real STRIDE customers.</p>
+  </div>
+</section>
+
 <section id="why" class="alt">
   <div class="wrap reveal">
     <div class="eyebrow">About</div>
@@ -275,6 +333,15 @@
       <span>STRIDE</span>
     </div>
     <p class="tagline">Technology that moves your business forward.</p>
+    <div class="contact-row">
+      <a href="https://wa.me/447880329549" target="_blank" rel="noopener">WhatsApp: +44 7880 329549</a>
+      <a href="mailto:hello@stridetechnology.com">hello@stridetechnology.com</a>
+    </div>
+    <div class="legal-row">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="cookies.html">Cookies</a>
+    </div>
     <p class="note">Got more than one site, or need something more involved? We can go further too — just get in touch.</p>
     <p class="note">Designed and built by STRIDE's own AI-driven process.</p>
   </div>
