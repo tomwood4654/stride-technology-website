@@ -135,22 +135,18 @@
   .step p { margin-top: 0.55rem; color: var(--ink-dim); font-size: 0.96rem; }
 
   /* The work */
+  .work-grid {
+    margin-top: 2.6rem; display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.3rem;
+  }
   .work-card {
-    margin-top: 2.6rem; max-width: 640px;
     background: var(--paper); border: 1px solid var(--line); border-radius: 4px;
-    padding: 2rem 2.2rem;
+    padding: 1.6rem 1.7rem;
   }
   section.alt .work-card { background: var(--surface); }
-  .work-card .status {
-    display: inline-block; font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase;
-    padding: 0.2rem 0.55rem; border-radius: 999px; margin-bottom: 0.9rem; font-weight: 600;
-    background: color-mix(in srgb, var(--gold) 18%, transparent); color: var(--gold);
-  }
-  .work-card h3 { font-size: 1.25rem; }
-  .work-card p { margin-top: 0.7rem; color: var(--ink-dim); font-size: 0.96rem; }
-  .work-card ul { margin: 0.9rem 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-  .work-card li { font-size: 0.92rem; color: var(--ink-dim); padding-left: 1.1rem; position: relative; }
-  .work-card li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
+  .work-card .num { font-family: 'Bitter', serif; font-weight: 800; font-size: 1.1rem; color: var(--gold); }
+  .work-card h3 { font-size: 1.05rem; margin-top: 0.5rem; }
+  .work-card p { margin-top: 0.6rem; color: var(--ink-dim); font-size: 0.9rem; }
 
   /* Founder note */
   .founder { display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: start; margin-top: 2.4rem; }
@@ -200,17 +196,33 @@
   <div class="wrap reveal">
     <div class="eyebrow">What we do</div>
     <h2>Technology uplift for small businesses</h2>
-    <p class="lede">Booking, payments, a chatbot for out-of-hours questions, automated scheduling and invoicing, real support adopting the AI tools already available to you — the kind of technology large companies use every day, sized and priced for a business that's never had it before.</p>
-    <div class="work-card">
-      <span class="status">The work</span>
-      <h3>An honest audit, then real technology</h3>
-      <p>We start with a short, low-cost look at where your business is losing time to manual admin — then help with whichever of these actually moves the needle for you:</p>
-      <ul>
-        <li>Booking, payments and enquiry forms, so customers can reach you outside opening hours</li>
-        <li>A simple chatbot trained on your own business, answering the questions you get asked most</li>
-        <li>Automating the admin that eats your evenings — scheduling, invoicing, reporting</li>
-        <li>Ongoing support actually using the AI tools already available to you, not just installing them</li>
-      </ul>
+    <p class="lede">The kind of technology large companies use every day — sized, priced and explained for a business that's never had access to it before. We start with whichever of these will actually move the needle for you.</p>
+    <div class="work-grid">
+      <div class="work-card">
+        <div class="num">01</div>
+        <h3>Never miss an enquiry</h3>
+        <p>Calls, messages and bookings, landing somewhere you'll actually see them — even when you can't pick up.</p>
+      </div>
+      <div class="work-card">
+        <div class="num">02</div>
+        <h3>Be found, and look the part</h3>
+        <p>Your Google listing, reviews and online details, accurate everywhere and working for you.</p>
+      </div>
+      <div class="work-card">
+        <div class="num">03</div>
+        <h3>Get paid without the chasing</h3>
+        <p>Bookings, deposits and invoices that don't rely on you remembering to send them.</p>
+      </div>
+      <div class="work-card">
+        <div class="num">04</div>
+        <h3>Less admin, more of your day back</h3>
+        <p>Quotes, scheduling and the paperwork that currently eats your evenings.</p>
+      </div>
+      <div class="work-card">
+        <div class="num">05</div>
+        <h3>Stay in control of what you've built</h3>
+        <p>Logins, access and the basics of staying secure and compliant — sorted properly, in your name.</p>
+      </div>
     </div>
   </div>
 </section>
