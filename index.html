@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="STRIDE builds small businesses a real website -- free, live, and ready before you ever say yes.">
+<title>STRIDE</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bitter:wght@500;700;800&family=Karla:wght@400;500;600&display=swap');
+
+  :root {
+    --paper: #f1ece1;
+    --surface: #fbf8f1;
+    --ink: #1b2420;
+    --ink-dim: #55605a;
+    --ink-faint: #8a9089;
+    --line: #ddd3bf;
+    --gold: #a97c1f;
+    --gold-bright: #c4941f;
+    --green: #1f4536;
+    --green-ink: #f1ece1;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #141d17;
+      --surface: #1b2820;
+      --ink: #f2ece0;
+      --ink-dim: #b9b0a0;
+      --ink-faint: #7c8a80;
+      --line: #2c3c31;
+      --gold: #d1a23f;
+      --gold-bright: #e0b453;
+      --green: #0f1c14;
+      --green-ink: #f2ece0;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #141d17;
+    --surface: #1b2820;
+    --ink: #f2ece0;
+    --ink-dim: #b9b0a0;
+    --ink-faint: #7c8a80;
+    --line: #2c3c31;
+    --gold: #d1a23f;
+    --gold-bright: #e0b453;
+    --green: #0f1c14;
+    --green-ink: #f2ece0;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Karla', system-ui, sans-serif;
+    line-height: 1.6;
+  }
+  h1, h2, h3 { font-family: 'Bitter', Georgia, serif; text-wrap: balance; margin: 0; color: var(--ink); }
+  p { margin: 0; }
+  a { color: inherit; }
+  ::selection { background: var(--gold); color: var(--paper); }
+
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 1.6rem; }
+
+  /* Header */
+  header.site {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  header.site .wrap { display: flex; align-items: center; justify-content: space-between; padding-top: 0.9rem; padding-bottom: 0.9rem; }
+  .logo { display: flex; align-items: center; gap: 0.55rem; }
+  .logo svg { height: 26px; width: auto; display: block; }
+  .logo span { font-family: 'Bitter', serif; font-weight: 700; font-size: 1.3rem; letter-spacing: 0.01em; }
+  nav.site-nav { display: flex; gap: 1.6rem; }
+  nav.site-nav a { font-size: 0.92rem; color: var(--ink-dim); text-decoration: none; }
+  nav.site-nav a:hover { color: var(--ink); }
+  @media (max-width: 560px) { nav.site-nav { display: none; } }
+
+  /* Hero */
+  .hero { padding: 5.5rem 0 4.5rem; }
+  .hero .mark { margin-bottom: 1.6rem; opacity: 0; transform: translateY(10px); animation: rise 0.7s 0.1s ease forwards; }
+  .hero .mark svg { height: 46px; width: auto; }
+  .hero h1 {
+    font-size: clamp(2.1rem, 5vw, 3.4rem);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    max-width: 15ch;
+    opacity: 0; transform: translateY(14px); animation: rise 0.7s 0.28s ease forwards;
+  }
+  .hero .sub {
+    margin-top: 1.3rem; max-width: 46ch;
+    font-size: 1.12rem; color: var(--ink-dim);
+    opacity: 0; transform: translateY(14px); animation: rise 0.7s 0.44s ease forwards;
+  }
+  .hero .cta {
+    margin-top: 2.1rem; display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: 'Bitter', serif; font-weight: 700; font-size: 0.98rem;
+    color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--gold);
+    padding-bottom: 0.15rem;
+    opacity: 0; transform: translateY(14px); animation: rise 0.7s 0.6s ease forwards;
+  }
+  .hero .cta:hover { color: var(--gold); }
+
+  @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+  @keyframes barUp { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+  .mark svg rect { transform-origin: bottom; animation: barUp 0.55s cubic-bezier(.2,.9,.3,1) backwards; }
+  .mark svg rect:nth-child(1) { animation-delay: 0.05s; }
+  .mark svg rect:nth-child(2) { animation-delay: 0.18s; }
+  .mark svg rect:nth-child(3) { animation-delay: 0.31s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero .mark, .hero h1, .hero .sub, .hero .cta { animation: none; opacity: 1; transform: none; }
+    .mark svg rect { animation: none; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+  }
+
+  /* Sections */
+  section { padding: 4.2rem 0; }
+  section.alt { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .eyebrow { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 0.7rem; }
+  section h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); max-width: 24ch; }
+  section .lede { margin-top: 0.9rem; max-width: 52ch; color: var(--ink-dim); font-size: 1.02rem; }
+
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* Steps */
+  .steps { margin-top: 2.6rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  @media (max-width: 760px) { .steps { grid-template-columns: 1fr; } }
+  .step .num { font-family: 'Bitter', serif; font-weight: 800; font-size: 1.7rem; color: var(--gold); }
+  .step h3 { font-size: 1.12rem; margin-top: 0.5rem; }
+  .step p { margin-top: 0.55rem; color: var(--ink-dim); font-size: 0.96rem; }
+
+  /* Pillars */
+  .pillars { margin-top: 2.6rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; }
+  @media (max-width: 760px) { .pillars { grid-template-columns: 1fr; } }
+  .pillar {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 4px;
+    padding: 1.8rem;
+  }
+  section.alt .pillar { background: var(--surface); }
+  .pillar .status {
+    display: inline-block; font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 0.2rem 0.55rem; border-radius: 999px; margin-bottom: 0.9rem; font-weight: 600;
+  }
+  .pillar.live .status { background: color-mix(in srgb, var(--gold) 18%, transparent); color: var(--gold); }
+  .pillar.roadmap .status { background: color-mix(in srgb, var(--ink-faint) 22%, transparent); color: var(--ink-dim); }
+  .pillar h3 { font-size: 1.25rem; }
+  .pillar p { margin-top: 0.7rem; color: var(--ink-dim); font-size: 0.96rem; }
+  .pillar ul { margin: 0.9rem 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+  .pillar li { font-size: 0.9rem; color: var(--ink-dim); padding-left: 1rem; position: relative; }
+  .pillar li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
+
+  /* Founder note */
+  .founder { display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: start; margin-top: 2.4rem; }
+  @media (max-width: 620px) { .founder { grid-template-columns: 1fr; } }
+  .founder .quote-mark { font-family: 'Bitter', serif; font-size: 4.5rem; line-height: 1; color: var(--gold); font-weight: 800; }
+  .founder p { font-size: 1.08rem; color: var(--ink); max-width: 58ch; }
+  .founder p + p { margin-top: 1rem; color: var(--ink-dim); font-size: 0.98rem; }
+
+  /* Footer */
+  footer.site {
+    background: var(--green); color: var(--green-ink);
+    padding: 3rem 0 2.2rem;
+  }
+  footer.site .wrap { display: flex; flex-direction: column; gap: 1rem; }
+  footer.site .logo span { color: var(--green-ink); }
+  footer.site .tagline { font-family: 'Bitter', serif; font-size: 1.15rem; max-width: 30ch; color: var(--green-ink); }
+  footer.site .note { font-size: 0.82rem; color: color-mix(in srgb, var(--green-ink) 65%, transparent); margin-top: 1.4rem; }
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="logo">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><rect x="8" y="66" width="18" height="26" rx="3" fill="var(--gold)"/><rect x="41" y="46" width="18" height="46" rx="3" fill="var(--gold)"/><rect x="74" y="26" width="18" height="66" rx="3" fill="var(--gold)"/></svg>
+      <span>STRIDE</span>
+    </div>
+    <nav class="site-nav">
+      <a href="#how">How it works</a>
+      <a href="#what">What we do</a>
+      <a href="#why">Why STRIDE</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="mark">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><rect x="8" y="66" width="18" height="26" rx="3" fill="var(--gold)"/><rect x="41" y="46" width="18" height="46" rx="3" fill="var(--gold)"/><rect x="74" y="26" width="18" height="66" rx="3" fill="var(--gold)"/></svg>
+    </div>
+    <h1>Technology that moves your business forward.</h1>
+    <p class="sub">We build small businesses a real website — free, live, and ready before you ever say yes.</p>
+    <a class="cta" href="#how">See how it works ↓</a>
+  </div>
+</section>
+
+<section id="how" class="alt">
+  <div class="wrap reveal">
+    <div class="eyebrow">How it works</div>
+    <h2>We build first. You decide after.</h2>
+    <p class="lede">Most agencies quote a price, then build — if you say yes first. We do it the other way round.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="num">01</div>
+        <h3>We build it</h3>
+        <p>We look at your business — your reviews, your hours, what makes you, you — and build a real, live website. No brief, no meeting, no cost to you.</p>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <h3>You see it, live</h3>
+        <p>It's already online before we ever get in touch. Not a mockup or a PDF — a working website with your name on it.</p>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <h3>If you like it, it's yours</h3>
+        <p>No obligation. If it's not for you, we'll leave you be. If it is, we make it permanently yours — on your own domain, hosted properly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="what">
+  <div class="wrap reveal">
+    <div class="eyebrow">What we do</div>
+    <h2>Two ways we move a business forward</h2>
+    <p class="lede">A website is where most businesses need to start — but it isn't where we stop.</p>
+    <div class="pillars">
+      <div class="pillar live">
+        <span class="status">Live now</span>
+        <h3>Digital Presence</h3>
+        <p>A real website, built and hosted properly, with room to grow as your business needs more from it.</p>
+        <ul>
+          <li>Your own domain, hosted and maintained</li>
+          <li>Booking, payments and enquiry forms</li>
+          <li>A simple chatbot for out-of-hours questions</li>
+          <li>Built around your real reviews, hours and story</li>
+        </ul>
+      </div>
+      <div class="pillar roadmap">
+        <span class="status">Coming soon</span>
+        <h3>Business Optimisation</h3>
+        <p>Large companies have spent years replacing manual admin with technology. We're building the same for small businesses — sized, and priced, for you.</p>
+        <ul>
+          <li>An honest audit of where time gets lost to admin</li>
+          <li>Automating scheduling, invoicing and reporting</li>
+          <li>Real support adopting the AI tools already available to you</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="why" class="alt">
+  <div class="wrap reveal">
+    <div class="eyebrow">Why STRIDE</div>
+    <h2>Started by someone who's seen both ends of it</h2>
+    <div class="founder">
+      <div class="quote-mark">“</div>
+      <div>
+        <p>I spent over a decade helping one of the world's largest companies adopt new technology well — and I built a small business of my own on the side, from nothing, including its website. I know what good technology adoption looks like at enormous scale, and I know what it's like to do it yourself with none of that scale behind you.</p>
+        <p>Small businesses deserve the same access to good technology that large ones have always had. That's what STRIDE is for.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="logo">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><rect x="8" y="66" width="18" height="26" rx="3" fill="var(--gold-bright)"/><rect x="41" y="46" width="18" height="46" rx="3" fill="var(--gold-bright)"/><rect x="74" y="26" width="18" height="66" rx="3" fill="var(--gold-bright)"/></svg>
+      <span>STRIDE</span>
+    </div>
+    <p class="tagline">Technology that moves your business forward.</p>
+    <p class="note">Designed and built by STRIDE's own AI-driven process.</p>
+  </div>
+</footer>
+
+<script>
+  var els = document.querySelectorAll('.reveal');
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  els.forEach(function (el) { io.observe(el); });
+</script>
+</body>
+</html>
