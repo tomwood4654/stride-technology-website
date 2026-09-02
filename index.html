@@ -17,8 +17,8 @@
     --line: #ddd3bf;
     --gold: #a97c1f;
     --gold-bright: #c4941f;
-    --green: #1f4536;
-    --green-ink: #f1ece1;
+    --charcoal: #211f1a;
+    --charcoal-ink: #f1ece1;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -31,8 +31,8 @@
       --line: #2c3c31;
       --gold: #d1a23f;
       --gold-bright: #e0b453;
-      --green: #0f1c14;
-      --green-ink: #f2ece0;
+      --charcoal: #0d0c0a;
+      --charcoal-ink: #f2ece0;
     }
   }
   :root[data-theme="dark"] {
@@ -44,8 +44,8 @@
     --line: #2c3c31;
     --gold: #d1a23f;
     --gold-bright: #e0b453;
-    --green: #0f1c14;
-    --green-ink: #f2ece0;
+    --charcoal: #0d0c0a;
+    --charcoal-ink: #f2ece0;
   }
 
   * { box-sizing: border-box; }
@@ -77,7 +77,7 @@
   nav.site-nav { display: flex; align-items: center; gap: 1.5rem; }
   nav.site-nav a { font-size: 0.92rem; color: var(--ink-dim); text-decoration: none; }
   nav.site-nav a:hover { color: var(--ink); }
-  nav.site-nav a.cta-link { color: var(--paper); background: var(--green); padding: 0.4rem 0.9rem; border-radius: 3px; font-weight: 600; }
+  nav.site-nav a.cta-link { color: var(--paper); background: var(--charcoal); padding: 0.4rem 0.9rem; border-radius: 3px; font-weight: 600; }
   nav.site-nav a.cta-link:hover { background: var(--gold); color: var(--ink); }
   @media (max-width: 700px) { nav.site-nav a:not(.cta-link) { display: none; } }
 
@@ -188,6 +188,17 @@
   /* Contact */
   .contact-grid { display: grid; grid-template-columns: auto 1fr; gap: 3rem; margin-top: 2.4rem; align-items: start; }
   @media (max-width: 700px) { .contact-grid { grid-template-columns: 1fr; } }
+  .contact-location {
+    margin-top: 2.6rem; display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center;
+    padding-top: 2.2rem; border-top: 1px solid var(--line);
+  }
+  @media (max-width: 700px) { .contact-location { grid-template-columns: 1fr; } }
+  .contact-location h3 { font-size: 1rem; }
+  .contact-location p { margin-top: 0.5rem; color: var(--ink-dim); font-size: 0.9rem; line-height: 1.5; }
+  .location-map {
+    width: 100%; max-width: 420px; height: 200px; border: 1px solid var(--line); border-radius: 4px;
+    filter: grayscale(0.3) contrast(1.05);
+  }
   .contact-direct { display: flex; flex-direction: column; }
   .contact-form { display: flex; flex-direction: column; gap: 1.1rem; max-width: 480px; }
   .contact-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
@@ -201,7 +212,7 @@
   .contact-form input:focus, .contact-form textarea:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
   .form-submit {
     align-self: flex-start; font-family: 'Bitter', serif; font-weight: 700; font-size: 0.95rem;
-    color: var(--paper); background: var(--green); border: none; border-radius: 4px;
+    color: var(--paper); background: var(--charcoal); border: none; border-radius: 4px;
     padding: 0.7rem 1.6rem; cursor: pointer; transition: background 0.2s ease;
   }
   .form-submit:hover { background: var(--gold); color: var(--ink); }
@@ -222,23 +233,24 @@
 
   /* Footer */
   footer.site {
-    background: var(--green); color: var(--green-ink);
+    background: var(--charcoal); color: var(--charcoal-ink);
     padding: 3.4rem 0 2rem;
   }
-  footer.site .logo span { color: var(--green-ink); }
-  footer.site .tagline { font-family: 'Bitter', serif; font-size: 1.1rem; max-width: 26ch; color: var(--green-ink); margin-top: 0.9rem; }
+  footer.site .logo span { color: var(--charcoal-ink); }
+  footer.site .tagline { font-family: 'Bitter', serif; font-size: 1.1rem; max-width: 26ch; color: var(--charcoal-ink); margin-top: 0.9rem; }
+  footer.site .footer-address { font-size: 0.85rem; line-height: 1.5; color: color-mix(in srgb, var(--charcoal-ink) 75%, transparent); margin-top: 1rem; }
   footer.site .footer-grid {
     display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.3fr; gap: 2rem;
-    padding-bottom: 2.4rem; border-bottom: 1px solid color-mix(in srgb, var(--green-ink) 18%, transparent);
+    padding-bottom: 2.4rem; border-bottom: 1px solid color-mix(in srgb, var(--charcoal-ink) 18%, transparent);
   }
   @media (max-width: 760px) { footer.site .footer-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 480px) { footer.site .footer-grid { grid-template-columns: 1fr; } }
   footer.site .footer-col h4 {
     font-family: 'Karla', sans-serif; font-size: 0.72rem; letter-spacing: 0.07em; text-transform: uppercase;
-    font-weight: 600; color: color-mix(in srgb, var(--green-ink) 60%, transparent); margin-bottom: 0.9rem;
+    font-weight: 600; color: color-mix(in srgb, var(--charcoal-ink) 60%, transparent); margin-bottom: 0.9rem;
   }
   footer.site .footer-col a {
-    display: block; font-size: 0.88rem; color: color-mix(in srgb, var(--green-ink) 82%, transparent);
+    display: block; font-size: 0.88rem; color: color-mix(in srgb, var(--charcoal-ink) 82%, transparent);
     text-decoration: none; margin-bottom: 0.6rem;
   }
   footer.site .footer-col a:hover { color: var(--gold-bright); }
@@ -246,16 +258,20 @@
   footer.site .social-icon {
     display: flex; align-items: center; justify-content: center;
     width: 30px; height: 30px; border-radius: 50%;
-    background: color-mix(in srgb, var(--green-ink) 12%, transparent);
-    color: var(--green-ink); font-family: 'Karla', sans-serif; font-weight: 700; font-size: 0.75rem;
+    background: color-mix(in srgb, var(--charcoal-ink) 12%, transparent);
+    color: var(--charcoal-ink); font-family: 'Karla', sans-serif; font-weight: 700; font-size: 0.75rem;
     text-decoration: none; margin: 0;
   }
-  footer.site a.social-icon:hover { background: var(--gold-bright); color: var(--green); }
+  footer.site a.social-icon:hover { background: var(--gold-bright); color: var(--charcoal); }
   footer.site .social-icon svg { width: 16px; height: 16px; }
+  /* .footer-col a (display:block, margin-bottom) otherwise wins over .social-icon
+     on specificity for the WhatsApp anchor specifically -- found live: it rendered
+     as a left-aligned block instead of a centered circle like the other two icons. */
+  footer.site .footer-col a.social-icon { display: flex; margin-bottom: 0; }
   footer.site .social-icon--soon { opacity: 0.35; cursor: default; }
   footer.site .footer-bottom { display: flex; flex-direction: column; gap: 0.4rem; padding-top: 1.6rem; }
-  footer.site .copyright { font-size: 0.8rem; color: color-mix(in srgb, var(--green-ink) 55%, transparent); }
-  footer.site .note { font-size: 0.8rem; color: color-mix(in srgb, var(--green-ink) 55%, transparent); }
+  footer.site .copyright { font-size: 0.8rem; color: color-mix(in srgb, var(--charcoal-ink) 55%, transparent); }
+  footer.site .note { font-size: 0.8rem; color: color-mix(in srgb, var(--charcoal-ink) 55%, transparent); }
 </style>
 </head>
 <body>
@@ -441,6 +457,13 @@
         <p class="form-fallback" id="contact-form-fallback" hidden>Thanks for filling this in — our form isn't fully connected yet. For now, please message us on WhatsApp or drop an email using the links alongside, and we'll get straight back to you.</p>
       </form>
     </div>
+    <div class="contact-location">
+      <div>
+        <h3>Based in Lingfield</h3>
+        <p>Oast House, New Farm Place<br>Lingfield, RH7 6EF</p>
+      </div>
+      <iframe class="location-map" src="https://www.google.com/maps?q=Oast+House,+New+Farm+Place,+Lingfield,+RH7+6EF&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="STRIDE's location"></iframe>
+    </div>
   </div>
 </section>
 
@@ -453,7 +476,7 @@
           <span>STRIDE</span>
         </div>
         <p class="tagline">Technology that moves your business forward.</p>
-        <!-- Address: not published yet -- add once a real, confirmed address is provided. Never fabricate one. -->
+        <p class="footer-address">Oast House, New Farm Place<br>Lingfield, RH7 6EF</p>
       </div>
       <div class="footer-col">
         <h4>Quick links</h4>
