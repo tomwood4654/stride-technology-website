@@ -60,28 +60,23 @@
   /* Hero */
   .hero { padding: 4.2rem 0 4.5rem; }
   .hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 3rem; align-items: center; }
-  .hero-eyebrow {
-    display: inline-block; font-family: 'Karla', sans-serif; font-weight: 600; font-size: 1rem;
-    color: var(--ink-dim); margin-bottom: 0.9rem;
-    opacity: 0; transform: translateY(10px); animation: rise 0.7s 0.1s ease forwards;
-  }
   .hero h1 {
     font-size: clamp(2.1rem, 4.6vw, 3.2rem);
     font-weight: 800;
     letter-spacing: -0.01em;
-    opacity: 0; transform: translateY(14px); animation: rise 0.7s 0.24s ease forwards;
+    opacity: 0; transform: translateY(14px); animation: rise 0.7s 0.1s ease forwards;
   }
   .hero .sub {
     margin-top: 1.3rem; max-width: 44ch;
     font-size: 1.12rem; color: var(--ink-dim);
-    opacity: 0; transform: translateY(14px); animation: rise 0.7s 0.4s ease forwards;
+    opacity: 0; transform: translateY(14px); animation: rise 0.7s 0.26s ease forwards;
   }
   .hero .cta {
     margin-top: 2.1rem; display: inline-flex; align-items: center; gap: 0.5rem;
     font-family: 'Bitter', serif; font-weight: 700; font-size: 0.98rem;
     color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--gold);
     padding-bottom: 0.15rem;
-    opacity: 0; transform: translateY(14px); animation: rise 0.7s 0.56s ease forwards;
+    opacity: 0; transform: translateY(14px); animation: rise 0.7s 0.42s ease forwards;
   }
   .hero .cta:hover { color: var(--gold); }
   .hero-photo-wrap {
@@ -122,7 +117,7 @@
   @keyframes rise { to { opacity: 1; transform: translateY(0); } }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero-eyebrow, .hero h1, .hero .sub, .hero .cta, .hero-photo-wrap { animation: none; opacity: 1; transform: none; }
+    .hero h1, .hero .sub, .hero .cta, .hero-photo-wrap { animation: none; opacity: 1; transform: none; }
     .reveal { opacity: 1 !important; transform: none !important; }
   }
 
@@ -288,7 +283,6 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-text">
-      <div class="hero-eyebrow">Hi, I'm Tom</div>
       <h1>Technology that moves your business forward.</h1>
       <p class="sub">Every small business deserves the technology big companies take for granted. We bring the same advantages, made simple, to businesses like yours.</p>
       <a class="cta" href="#what">See what we do ↓</a>
