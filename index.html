@@ -223,19 +223,39 @@
   /* Footer */
   footer.site {
     background: var(--green); color: var(--green-ink);
-    padding: 3rem 0 2.2rem;
+    padding: 3.4rem 0 2rem;
   }
-  footer.site .wrap { display: flex; flex-direction: column; gap: 1rem; }
   footer.site .logo span { color: var(--green-ink); }
-  footer.site .tagline { font-family: 'Bitter', serif; font-size: 1.15rem; max-width: 30ch; color: var(--green-ink); }
-  footer.site .contact-row { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.6rem; }
-  footer.site .contact-row a { color: var(--gold-bright); font-weight: 600; text-decoration: none; font-size: 0.95rem; }
-  footer.site .contact-row a:hover { text-decoration: underline; }
-  footer.site .legal-row { display: flex; gap: 1.2rem; flex-wrap: wrap; margin-top: 1rem; }
-  footer.site .legal-row a { font-size: 0.82rem; color: color-mix(in srgb, var(--green-ink) 70%, transparent); text-decoration: none; }
-  footer.site .legal-row a:hover { text-decoration: underline; }
-  footer.site .note { font-size: 0.82rem; color: color-mix(in srgb, var(--green-ink) 65%, transparent); margin-top: 1.4rem; }
-  footer.site .note + .note { margin-top: 0.4rem; }
+  footer.site .tagline { font-family: 'Bitter', serif; font-size: 1.1rem; max-width: 26ch; color: var(--green-ink); margin-top: 0.9rem; }
+  footer.site .footer-grid {
+    display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.3fr; gap: 2rem;
+    padding-bottom: 2.4rem; border-bottom: 1px solid color-mix(in srgb, var(--green-ink) 18%, transparent);
+  }
+  @media (max-width: 760px) { footer.site .footer-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { footer.site .footer-grid { grid-template-columns: 1fr; } }
+  footer.site .footer-col h4 {
+    font-family: 'Karla', sans-serif; font-size: 0.72rem; letter-spacing: 0.07em; text-transform: uppercase;
+    font-weight: 600; color: color-mix(in srgb, var(--green-ink) 60%, transparent); margin-bottom: 0.9rem;
+  }
+  footer.site .footer-col a {
+    display: block; font-size: 0.88rem; color: color-mix(in srgb, var(--green-ink) 82%, transparent);
+    text-decoration: none; margin-bottom: 0.6rem;
+  }
+  footer.site .footer-col a:hover { color: var(--gold-bright); }
+  footer.site .social-row { display: flex; gap: 0.6rem; margin-top: 1rem; }
+  footer.site .social-icon {
+    display: flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px; border-radius: 50%;
+    background: color-mix(in srgb, var(--green-ink) 12%, transparent);
+    color: var(--green-ink); font-family: 'Karla', sans-serif; font-weight: 700; font-size: 0.75rem;
+    text-decoration: none; margin: 0;
+  }
+  footer.site a.social-icon:hover { background: var(--gold-bright); color: var(--green); }
+  footer.site .social-icon svg { width: 16px; height: 16px; }
+  footer.site .social-icon--soon { opacity: 0.35; cursor: default; }
+  footer.site .footer-bottom { display: flex; flex-direction: column; gap: 0.4rem; padding-top: 1.6rem; }
+  footer.site .copyright { font-size: 0.8rem; color: color-mix(in srgb, var(--green-ink) 55%, transparent); }
+  footer.site .note { font-size: 0.8rem; color: color-mix(in srgb, var(--green-ink) 55%, transparent); }
 </style>
 </head>
 <body>
@@ -426,22 +446,47 @@
 
 <footer class="site">
   <div class="wrap">
-    <div class="logo">
-      <svg viewBox="0 0 100 100" aria-hidden="true"><rect x="8" y="66" width="18" height="26" rx="3" fill="var(--gold-bright)"/><rect x="41" y="46" width="18" height="46" rx="3" fill="var(--gold-bright)"/><rect x="74" y="26" width="18" height="66" rx="3" fill="var(--gold-bright)"/></svg>
-      <span>STRIDE</span>
+    <div class="footer-grid">
+      <div class="footer-col footer-brand">
+        <div class="logo">
+          <svg viewBox="0 0 100 100" aria-hidden="true"><rect x="8" y="66" width="18" height="26" rx="3" fill="var(--gold-bright)"/><rect x="41" y="46" width="18" height="46" rx="3" fill="var(--gold-bright)"/><rect x="74" y="26" width="18" height="66" rx="3" fill="var(--gold-bright)"/></svg>
+          <span>STRIDE</span>
+        </div>
+        <p class="tagline">Technology that moves your business forward.</p>
+        <!-- Address: not published yet -- add once a real, confirmed address is provided. Never fabricate one. -->
+      </div>
+      <div class="footer-col">
+        <h4>Quick links</h4>
+        <a href="index.html#what">What we do</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="index.html#examples">Examples</a>
+        <a href="faq.html">FAQ</a>
+        <a href="index.html#why">About</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="cookies.html">Cookies</a>
+      </div>
+      <div class="footer-col">
+        <h4>Get in touch</h4>
+        <a href="https://wa.me/447880329549" target="_blank" rel="noopener">WhatsApp: +44 7880 329549</a>
+        <a href="mailto:hello@stridetechnology.com">hello@stridetechnology.com</a>
+        <div class="social-row">
+          <a class="social-icon" href="https://wa.me/447880329549" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 8.3c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.5s.8 1.9.8 2 .1.3 0 .5-.2.3-.4.5-.4.5-.2.8c.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5s.5.1.7-.1.8-.9 1-1.2.5-.2.8-.1 1.9.9 2.2 1.1.5.3.6.4a2.6 2.6 0 0 1-.2 1.6c-.3.6-1.5 1.3-2.2 1.3s-2.6-.3-4.7-1.9c-2.6-2-4.1-4.4-4.3-4.7a5 5 0 0 1-.3-4.6Z" fill="currentColor"/></svg>
+          </a>
+          <span class="social-icon social-icon--soon" aria-label="Facebook (coming soon)">f</span>
+          <span class="social-icon social-icon--soon" aria-label="LinkedIn (coming soon)">in</span>
+        </div>
+      </div>
     </div>
-    <p class="tagline">Technology that moves your business forward.</p>
-    <div class="contact-row">
-      <a href="https://wa.me/447880329549" target="_blank" rel="noopener">WhatsApp: +44 7880 329549</a>
-      <a href="mailto:hello@stridetechnology.com">hello@stridetechnology.com</a>
+    <div class="footer-bottom">
+      <p class="copyright">© 2026 STRIDE</p>
+      <p class="note">Got more than one site, or need something more involved? We can go further too — just get in touch.</p>
+      <p class="note">Designed and built by STRIDE's own AI-driven process.</p>
     </div>
-    <div class="legal-row">
-      <a href="privacy.html">Privacy</a>
-      <a href="terms.html">Terms</a>
-      <a href="cookies.html">Cookies</a>
-    </div>
-    <p class="note">Got more than one site, or need something more involved? We can go further too — just get in touch.</p>
-    <p class="note">Designed and built by STRIDE's own AI-driven process.</p>
   </div>
 </footer>
 
