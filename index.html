@@ -109,6 +109,14 @@
   }
   .hero .cta:hover { color: var(--gold); }
 
+  .link-cta {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: 'Bitter', serif; font-weight: 700; font-size: 0.98rem;
+    color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--gold);
+    padding-bottom: 0.15rem;
+  }
+  .link-cta:hover { color: var(--gold); }
+
   @keyframes rise { to { opacity: 1; transform: translateY(0); } }
   @keyframes barUp { from { transform: scaleY(0); } to { transform: scaleY(1); } }
   .mark svg rect { transform-origin: bottom; animation: barUp 0.55s cubic-bezier(.2,.9,.3,1) backwards; }
@@ -176,6 +184,28 @@
   .example-card p { margin-top: 0.5rem; color: var(--ink-dim); font-size: 0.88rem; }
   .example-link { display: block; margin-top: 1rem; font-weight: 600; font-size: 0.85rem; color: var(--gold); }
   .example-note { margin-top: 1.4rem; font-size: 0.8rem; color: var(--ink-faint); }
+
+  /* Contact */
+  .contact-grid { display: grid; grid-template-columns: auto 1fr; gap: 3rem; margin-top: 2.4rem; align-items: start; }
+  @media (max-width: 700px) { .contact-grid { grid-template-columns: 1fr; } }
+  .contact-direct { display: flex; flex-direction: column; }
+  .contact-form { display: flex; flex-direction: column; gap: 1.1rem; max-width: 480px; }
+  .contact-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+  @media (max-width: 480px) { .contact-form .form-row { grid-template-columns: 1fr; } }
+  .contact-form label { display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.85rem; color: var(--ink-dim); font-weight: 500; }
+  .contact-form input, .contact-form textarea {
+    font-family: 'Karla', sans-serif; font-size: 0.95rem; color: var(--ink);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
+    padding: 0.6rem 0.7rem; resize: vertical;
+  }
+  .contact-form input:focus, .contact-form textarea:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+  .contact-form .hp-field { position: absolute; left: -9999px; }
+  .form-submit {
+    align-self: flex-start; font-family: 'Bitter', serif; font-weight: 700; font-size: 0.95rem;
+    color: var(--paper); background: var(--green); border: none; border-radius: 4px;
+    padding: 0.7rem 1.6rem; cursor: pointer; transition: background 0.2s ease;
+  }
+  .form-submit:hover { background: var(--gold); color: var(--ink); }
 
   /* Founder note */
   .founder { display: grid; grid-template-columns: 220px 1fr; gap: 2.4rem; align-items: start; margin-top: 2.4rem; }
@@ -268,6 +298,32 @@
   </div>
 </section>
 
+<section id="how">
+  <div class="wrap reveal">
+    <div class="eyebrow">How it works</div>
+    <h2>Getting set up is simple</h2>
+    <p class="lede">No jargon, no tech headaches — a real person handles the boring parts.</p>
+    <div class="work-grid">
+      <div class="work-card">
+        <div class="num">01</div>
+        <h3>Tell us what's slowing you down</h3>
+        <p>A quick chat or a short form — your trade, what's eating your time, what you're hoping for. Takes a few minutes.</p>
+      </div>
+      <div class="work-card">
+        <div class="num">02</div>
+        <h3>We set it up</h3>
+        <p>We handle the setup — your website, your Google listing, whatever else you need. Nothing for you to configure.</p>
+      </div>
+      <div class="work-card">
+        <div class="num">03</div>
+        <h3>You're live</h3>
+        <p>Up and running, with a real person to call if anything ever needs changing.</p>
+      </div>
+    </div>
+    <a class="link-cta" href="#contact" style="margin-top:2.2rem;">Get in touch →</a>
+  </div>
+</section>
+
 <section id="examples">
   <div class="wrap reveal">
     <div class="eyebrow">Examples</div>
@@ -330,6 +386,31 @@
         <p>That's the gap STRIDE exists to close. Small, family-run, local businesses deserve the same access to good technology that large ones have always had — explained simply, with no jargon and no contract you don't understand, from someone who's spent his career making complicated technology work for real people.</p>
         <p class="signoff">Tom<span>Founder, STRIDE</span></p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap reveal">
+    <div class="eyebrow">Get in touch</div>
+    <h2>Let's have a chat</h2>
+    <p class="lede">However's easiest for you — message on WhatsApp, drop an email, or fill in the form and we'll come back to you.</p>
+    <div class="contact-grid">
+      <div class="contact-direct">
+        <a class="link-cta" href="https://wa.me/447880329549" target="_blank" rel="noopener">WhatsApp us →</a>
+        <a class="link-cta" href="mailto:hello@stridetechnology.com" style="margin-top:1.1rem;">Email us →</a>
+      </div>
+      <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
+        <input type="hidden" name="form-name" value="contact">
+        <p class="hp-field"><label>Leave this field blank<input name="bot-field"></label></p>
+        <div class="form-row">
+          <label>Your name<input type="text" name="name" required></label>
+          <label>Business name<input type="text" name="business" required></label>
+        </div>
+        <label>Best way to reach you (phone or email)<input type="text" name="contact" required></label>
+        <label>What do you need help with?<textarea name="message" rows="3"></textarea></label>
+        <button type="submit" class="form-submit">Send</button>
+      </form>
     </div>
   </div>
 </section>
