@@ -6,7 +6,7 @@
 <meta name="description" content="STRIDE helps small business owners grow through technology.">
 <title>STRIDE</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Bitter:wght@500;700;800&family=Karla:wght@400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Bitter:wght@500;700;800&family=Karla:wght@400;500;600&family=Fraunces:wght@600;700&family=Anton&display=swap');
 
   :root {
     --paper: #f1ece1;
@@ -82,7 +82,10 @@
   @media (max-width: 700px) { nav.site-nav a:not(.cta-link) { display: none; } }
 
   /* Hero */
-  .hero { padding: 5.5rem 0 4.5rem; }
+  .hero { padding: 5.5rem 0 4.5rem; position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; top: 0; right: 0; height: 100%; width: 42%; opacity: 0.05; z-index: 0; pointer-events: none; }
+  .hero .wrap { position: relative; z-index: 1; }
+  @media (max-width: 700px) { .hero-bg { display: none; } }
   .hero .mark { margin-bottom: 1.6rem; opacity: 0; transform: translateY(10px); animation: rise 0.7s 0.1s ease forwards; }
   .hero .mark svg { height: 46px; width: auto; }
   .hero h1 {
@@ -139,7 +142,8 @@
     padding: 1.6rem 1.7rem;
   }
   section.alt .work-card { background: var(--surface); }
-  .work-card .num { font-family: 'Bitter', serif; font-weight: 800; font-size: 1.1rem; color: var(--gold); }
+  .work-icon { width: 30px; height: 30px; display: block; margin-bottom: 0.9rem; }
+  .work-card .num { font-family: 'Bitter', serif; font-weight: 800; font-size: 0.85rem; color: var(--ink-faint); }
   .work-card h3 { font-size: 1.15rem; margin-top: 0.5rem; }
   .work-card p { margin-top: 0.6rem; color: var(--ink-dim); font-size: 0.92rem; }
   .work-card p.includes { margin-top: 0.9rem; padding-top: 0.9rem; border-top: 1px solid var(--line); font-size: 0.8rem; color: var(--ink-faint); }
@@ -152,6 +156,17 @@
     padding: 1.6rem 1.7rem; transition: border-color 0.2s ease;
   }
   .example-card:hover { border-color: var(--gold); }
+  .mock-browser { margin: -1.6rem -1.7rem 1.1rem; border-bottom: 1px solid var(--line); overflow: hidden; }
+  .mock-chrome { display: flex; align-items: center; gap: 0.3rem; padding: 0.5rem 0.7rem; background: #e4ded0; }
+  .mock-chrome .dot { width: 6px; height: 6px; border-radius: 50%; background: #bdb39c; display: inline-block; }
+  .mock-chrome .mock-url {
+    margin-left: 0.5rem; font-size: 0.62rem; color: #7a7264; font-family: 'Karla', sans-serif;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .mock-hero { background: var(--mock-bg); padding: 1.5rem 1.3rem; min-height: 108px; display: flex; flex-direction: column; justify-content: center; }
+  .mock-headline { font-family: var(--mock-font); color: var(--mock-ink); font-weight: 700; font-size: 0.92rem; line-height: 1.3; max-width: 22ch; }
+  .mock-headline--anton { text-transform: uppercase; letter-spacing: 0.01em; font-size: 1rem; }
+  .mock-accent-bar { width: 30px; height: 4px; background: var(--mock-accent); margin-top: 0.7rem; border-radius: 2px; }
   .example-tag {
     display: inline-block; font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase;
     padding: 0.15rem 0.5rem; border-radius: 999px; background: color-mix(in srgb, var(--gold) 18%, transparent);
@@ -211,6 +226,7 @@
 </header>
 
 <section class="hero">
+  <svg class="hero-bg" viewBox="0 0 100 100" aria-hidden="true" preserveAspectRatio="xMaxYMid slice"><rect x="8" y="66" width="18" height="26" rx="3" fill="var(--gold)"/><rect x="41" y="46" width="18" height="46" rx="3" fill="var(--gold)"/><rect x="74" y="26" width="18" height="66" rx="3" fill="var(--gold)"/></svg>
   <div class="wrap">
     <div class="mark">
       <svg viewBox="0 0 100 100" aria-hidden="true"><rect x="8" y="66" width="18" height="26" rx="3" fill="var(--gold)"/><rect x="41" y="46" width="18" height="46" rx="3" fill="var(--gold)"/><rect x="74" y="26" width="18" height="66" rx="3" fill="var(--gold)"/></svg>
@@ -228,18 +244,21 @@
     <p class="lede">Pick whichever of these actually solves a problem for you. We don't do one-size-fits-all packages — we sit down, figure out what's actually going to help your business, and build that.</p>
     <div class="work-grid">
       <div class="work-card">
+        <svg class="work-icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="13" r="8" fill="var(--gold)"/><circle cx="16" cy="13" r="3.2" fill="var(--surface)"/><path d="M16 29 L11.5 19.5 L20.5 19.5 Z" fill="var(--gold)"/></svg>
         <div class="num">01</div>
         <h3>Be found, and look the part</h3>
         <p>We make sure people can actually find you — and that what they find looks the part.</p>
         <p class="includes">Includes: your Google listing, a proper website, your menu or price list online</p>
       </div>
       <div class="work-card">
+        <svg class="work-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4c-4.5 0-6.5 3.5-6.5 8v6l-3 4.5h19l-3-4.5v-6c0-4.5-2-8-6.5-8Z" fill="var(--gold)"/><rect x="13" y="25.5" width="6" height="3.5" rx="1.75" fill="var(--gold)"/></svg>
         <div class="num">02</div>
         <h3>Never miss a customer</h3>
         <p>However someone tries to reach you, we make sure it doesn't fall through the cracks.</p>
         <p class="includes">Includes: missed-call handling, online booking, appointment reminders</p>
       </div>
       <div class="work-card">
+        <svg class="work-icon" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="9" width="26" height="16" rx="3" fill="var(--gold)"/><rect x="3" y="14" width="26" height="4" fill="var(--surface)"/></svg>
         <div class="num">03</div>
         <h3>Get paid, without the hassle</h3>
         <p>Less chasing, less paperwork, more time for the actual job.</p>
@@ -253,21 +272,42 @@
   <div class="wrap reveal">
     <div class="eyebrow">Examples</div>
     <h2>See it for yourself</h2>
-    <p class="lede">Three example businesses, invented to show you what a real build looks like — not screenshots, genuine live sites you can click through.</p>
+    <p class="lede">Three example businesses, invented to show you the range of what we build — a quick look here, then the real thing is one click away.</p>
     <div class="example-grid">
       <a class="example-card" href="https://stride-example-plumbing.netlify.app" target="_blank" rel="noopener">
+        <div class="mock-browser" style="--mock-bg:#f5efe2; --mock-ink:#2f4438; --mock-accent:#b5652d; --mock-font:'Fraunces',serif;">
+          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="mock-url">stride-example-plumbing.netlify.app</span></div>
+          <div class="mock-hero">
+            <div class="mock-headline">Trusted plumbing &amp; heating, done properly the first time.</div>
+            <div class="mock-accent-bar"></div>
+          </div>
+        </div>
         <span class="example-tag">Plumber</span>
         <h3>Whitfield Plumbing &amp; Heating</h3>
         <p>Family-run, emergency callouts, a straightforward trade site done properly.</p>
         <span class="example-link">View live example →</span>
       </a>
       <a class="example-card" href="https://stride-example-pub.netlify.app" target="_blank" rel="noopener">
+        <div class="mock-browser" style="--mock-bg:#f4ecd9; --mock-ink:#1e3a2a; --mock-accent:#c3a15c; --mock-font:'Fraunces',serif;">
+          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="mock-url">stride-example-pub.netlify.app</span></div>
+          <div class="mock-hero">
+            <div class="mock-headline">A proper village pub, done properly.</div>
+            <div class="mock-accent-bar"></div>
+          </div>
+        </div>
         <span class="example-tag">Pub</span>
         <h3>The Crown &amp; Anchor</h3>
         <p>Traditional village pub — menu, opening hours, and the character to match.</p>
         <span class="example-link">View live example →</span>
       </a>
       <a class="example-card" href="https://stride-example-chippy.netlify.app" target="_blank" rel="noopener">
+        <div class="mock-browser" style="--mock-bg:#f4f1ea; --mock-ink:#0c3856; --mock-accent:#d64c3f; --mock-font:'Anton',sans-serif;">
+          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="mock-url">stride-example-chippy.netlify.app</span></div>
+          <div class="mock-hero">
+            <div class="mock-headline mock-headline--anton">Proper fish &amp; chips, straight from the seafront</div>
+            <div class="mock-accent-bar"></div>
+          </div>
+        </div>
         <span class="example-tag">Takeaway</span>
         <h3>Harbour Fish &amp; Chips</h3>
         <p>Seaside chip shop — menu board, hours, and a proper sense of place.</p>
