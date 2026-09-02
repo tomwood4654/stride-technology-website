@@ -95,15 +95,22 @@
     color: var(--ink); box-shadow: 0 10px 22px -12px rgba(27, 36, 32, 0.3);
   }
   @media (max-width: 780px) {
-    .hero { padding: 2.8rem 0 3.2rem; }
-    .hero-grid { grid-template-columns: 1fr; gap: 1.8rem; text-align: center; }
-    .hero-photo-wrap { max-width: 168px; margin: 0 auto; }
-    .hero-photo { border-radius: 1.1rem; box-shadow: 0 14px 30px -14px rgba(27, 36, 32, 0.3); }
-    .hero-photo-caption {
-      position: static; display: inline-block; margin-top: 0.7rem; box-shadow: none;
-    }
+    .hero { padding: 2.8rem 0 2.6rem; }
+    .hero-grid { grid-template-columns: 1fr; text-align: center; }
+    .hero-photo-wrap { display: none; }
     .hero .sub { margin-left: auto; margin-right: auto; }
     .hero .cta { margin-left: auto; margin-right: auto; }
+  }
+  /* Mobile-only section order: About (the founder photo + story) follows straight after the
+     hero, ahead of the service sections — see .page-flow below. */
+  @media (max-width: 780px) {
+    .page-flow { display: flex; flex-direction: column; }
+    .page-flow > .hero { order: 1; }
+    .page-flow > #why { order: 2; }
+    .page-flow > #what { order: 3; }
+    .page-flow > #how { order: 4; }
+    .page-flow > #examples { order: 5; }
+    .page-flow > #contact { order: 6; }
   }
 
   .link-cta {
@@ -280,6 +287,7 @@
   </div>
 </header>
 
+<div class="page-flow">
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-text">
@@ -406,9 +414,8 @@
     <div class="eyebrow">About</div>
     <h2>Started by someone who's seen both ends of it</h2>
     <div class="founder">
-      <p>I spent over a decade inside one of the world's largest banks, helping thousands of people adopt new technology and actually use it well — including the recent wave of AI. I got to see up close what it looks like when a huge organisation does technology properly: less time wasted, more time spent on the work that actually matters.</p>
-      <p>At the same time, I built a small business of my own, from nothing, on the side — including building its own website and running its own marketing. It struck me how differently the two worlds work. Large companies have entire teams and unlimited budget to get this right. A one-man plumbing business, a family-run takeaway, the pub on the corner — the businesses that make up most of the country — have none of that. They're just as good at what they do, often better, but they've never had a fair shot at the technology that would make their lives easier.</p>
-      <p>That's the gap STRIDE exists to close — explained simply, with no jargon and no contract you don't understand, from someone who's spent his career making complicated technology work for real people.</p>
+      <p>I spent over a decade inside one of the world's largest banks, helping people adopt new technology properly — then built a small business of my own on the side, doing its website and marketing myself. I saw first-hand how differently the two worlds work: big companies have whole teams and unlimited budget to get this right; the plumber, the family takeaway, the pub on the corner never get that same shot.</p>
+      <p>STRIDE exists to close that gap — the technology big companies take for granted, made simple, with no jargon and no contract you don't understand.</p>
       <p class="signoff">Tom<span>Founder, STRIDE</span></p>
     </div>
   </div>
@@ -453,6 +460,7 @@
     </div>
   </div>
 </section>
+</div>
 
 <footer class="site">
   <div class="wrap">
