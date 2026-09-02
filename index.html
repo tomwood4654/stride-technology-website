@@ -101,10 +101,12 @@
   }
   @media (max-width: 780px) {
     .hero { padding: 2.8rem 0 3.2rem; }
-    .hero-grid { grid-template-columns: 1fr; gap: 1.5rem; text-align: center; }
-    .hero-photo-wrap { order: -1; max-width: 168px; margin: 0 auto; }
+    .hero-grid { grid-template-columns: 1fr; gap: 1.8rem; text-align: center; }
+    .hero-photo-wrap { max-width: 168px; margin: 0 auto; }
     .hero-photo { border-radius: 1.1rem; box-shadow: 0 14px 30px -14px rgba(27, 36, 32, 0.3); }
-    .hero-photo-caption { display: none; }
+    .hero-photo-caption {
+      position: static; display: inline-block; margin-top: 0.7rem; box-shadow: none;
+    }
     .hero .sub { margin-left: auto; margin-right: auto; }
     .hero .cta { margin-left: auto; margin-right: auto; }
   }
