@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="STRIDE helps UK small businesses get found online, make booking easy, get paid faster, and let the follow-ups happen automatically — technology made simple, from someone who's built it both ways.">
+<meta name="description" content="STRIDE helps UK small businesses get found online, never miss a customer, and get paid without the hassle — technology made simple, from someone who's built it both ways.">
 <title>STRIDE</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Bitter:wght@500;700;800&family=Karla:wght@400;500;600&family=Fraunces:wght@600;700&family=Anton&display=swap');
@@ -163,6 +163,10 @@
      markup -- if the script below never runs, nothing is hidden, it's just longer. */
   .svc-stack { margin-top: 2.4rem; display: flex; flex-direction: column; gap: 1.3rem; }
   .svc-addons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; }
+  .svc-addons-intro { margin-top: 0.6rem; }
+  .svc-addons-h { font-family: 'Bitter', serif; font-weight: 700; font-size: 1.1rem; color: var(--ink); }
+  .svc-addons-sub { margin-top: 0.3rem; color: var(--ink-dim); font-size: 0.92rem; }
+  @media (max-width: 700px) { .svc-addons-intro { margin-top: 0.3rem; } }
 
   .svc { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; }
   .svc--base { border-color: color-mix(in srgb, var(--gold) 45%, var(--line)); }
@@ -362,6 +366,8 @@
 </style>
 </head>
 <body>
+
+
 <header class="site">
   <div class="wrap">
     <div class="logo">
@@ -397,8 +403,8 @@
 <section id="what" class="alt">
   <div class="wrap reveal">
     <div class="eyebrow">What we do</div>
-    <h2>Four things we set up for you</h2>
-    <p class="lede">The first one is the foundation. The rest are optional — add them when they'd solve a real problem, not before.</p>
+    <h2>The core of what we do is help small businesses grow in an increasingly digital world — made simple.</h2>
+    <p class="lede">That starts with getting your foundations right — a professional website, a strong Google presence, and a simple way for customers to reach you. From there, add what turbocharges growth as your business needs it: effortless booking, faster payments, and automation that keeps leads warm.</p>
 
     <div class="svc-stack">
 
@@ -408,8 +414,8 @@
             <svg class="svc-icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="13" r="8" fill="var(--gold)"/><circle cx="16" cy="13" r="3.2" fill="var(--surface)"/><path d="M16 29 L11.5 19.5 L20.5 19.5 Z" fill="var(--gold)"/></svg>
             <span class="svc-tag svc-tag--base">Start here</span>
           </div>
-          <h3>Get Found &amp; Get Enquiries</h3>
-          <p class="svc-sub">Your website, working as a sales tool</p>
+          <h3>Your Foundations</h3>
+          <p class="svc-sub">Get found, and start winning enquiries</p>
           <span class="svc-chev" aria-hidden="true"></span>
         </summary>
         <div class="svc-body">
@@ -425,6 +431,11 @@
           <p class="svc-value">Turn more people looking at your website into real enquiries — backed by reviews people trust.</p>
         </div>
       </details>
+
+      <div class="svc-addons-intro">
+        <h3 class="svc-addons-h">Turbocharge your growth</h3>
+        <p class="svc-addons-sub">Add these when you're ready — not before.</p>
+      </div>
 
       <div class="svc-addons">
 
@@ -736,5 +747,6 @@
     });
   }
 </script>
+
 </body>
 </html>
