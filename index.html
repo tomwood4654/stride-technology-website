@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="STRIDE helps UK small businesses get found online, never miss a customer, and get paid without the hassle — technology made simple, from someone who's built it both ways.">
+<meta name="description" content="STRIDE helps UK small businesses get found online, make booking easy, get paid faster, and let the follow-ups happen automatically — technology made simple, from someone who's built it both ways.">
 <title>STRIDE</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Bitter:wght@500;700;800&family=Karla:wght@400;500;600&family=Fraunces:wght@600;700&family=Anton&display=swap');
@@ -154,6 +154,100 @@
   .work-card p { margin-top: 0.6rem; color: var(--ink-dim); font-size: 0.92rem; }
   .work-card p.includes { margin-top: 0.9rem; padding-top: 0.9rem; border-top: 1px solid var(--line); font-size: 0.8rem; color: var(--ink-faint); }
 
+  /* Services (#what) -- one foundation tier plus three optional add-ons.
+     Desktop: the foundation spans the full width with a two-column body, the three
+     add-ons sit in a 3-up grid beneath it, so the shape of the offer (one thing you
+     start with, three you can bolt on) is readable at a glance.
+     Mobile: each block is a <details> accordion so all four headings fit on one
+     screen instead of stacking into a wall of text. Every block ships OPEN in the
+     markup -- if the script below never runs, nothing is hidden, it's just longer. */
+  .svc-stack { margin-top: 2.4rem; display: flex; flex-direction: column; gap: 1.3rem; }
+  .svc-addons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; }
+
+  .svc { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; }
+  .svc--base { border-color: color-mix(in srgb, var(--gold) 45%, var(--line)); }
+
+  /* display:block + list-style:none + the webkit rule together kill the disclosure
+     triangle across Chrome, Firefox and older Safari. */
+  .svc-head { display: block; padding: 1.5rem 1.7rem 0; list-style: none; position: relative; }
+  .svc-head::-webkit-details-marker { display: none; }
+  .svc-tagrow { display: flex; align-items: center; gap: 0.7rem; }
+  .svc-icon { width: 26px; height: 26px; display: block; flex: none; }
+  .svc-tag {
+    font-size: 0.64rem; letter-spacing: 0.07em; text-transform: uppercase; font-weight: 600;
+    padding: 0.18rem 0.55rem; border-radius: 999px;
+  }
+  .svc-tag--base { background: color-mix(in srgb, var(--gold) 20%, transparent); color: var(--gold); }
+  .svc-tag--addon { background: color-mix(in srgb, var(--ink) 7%, transparent); color: var(--ink-faint); }
+  .svc-head h3 { font-size: 1.14rem; margin-top: 0.7rem; }
+  .svc--base .svc-head h3 { font-size: 1.35rem; }
+  .svc-sub { margin-top: 0.2rem; font-family: 'Bitter', serif; font-style: italic; font-size: 0.94rem; color: var(--gold); }
+  .svc-chev { display: none; }
+
+  .svc-body { padding: 0 1.7rem 1.6rem; }
+  .svc-desc { margin-top: 1rem; color: var(--ink-dim); font-size: 0.93rem; }
+  .svc-includes { margin-top: 1.2rem; }
+  .svc-label { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: var(--ink-faint); }
+  .svc-list { margin: 0.55rem 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0.42rem; }
+  .svc-list li { font-size: 0.88rem; color: var(--ink); padding-left: 1.15rem; position: relative; }
+  .svc-list li::before {
+    content: ''; position: absolute; left: 0; top: 0.58em;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
+  }
+  .svc-egwrap { margin-top: 1.1rem; }
+  .svc-eg { margin: 0.55rem 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0.38rem; }
+  .svc-eg li { font-size: 0.85rem; color: var(--ink-dim); padding-left: 1.15rem; position: relative; }
+  .svc-eg li::before { content: '\2192'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+  .svc-value {
+    margin-top: 1.35rem; padding: 0.75rem 0.95rem; border-radius: 4px;
+    background: color-mix(in srgb, var(--gold) 10%, transparent);
+    border-left: 3px solid var(--gold);
+    font-family: 'Bitter', serif; font-weight: 500; font-size: 0.9rem; color: var(--ink);
+  }
+
+  /* Foundation card: two columns on desktop so the longer copy doesn't run to a
+     single 90-character measure across the full 1040px wrap. */
+  .svc--base .svc-body { display: grid; grid-template-columns: 1.2fr 1fr; column-gap: 2.6rem; }
+  .svc--base .svc-includes { margin-top: 1rem; }
+  .svc--base .svc-value { grid-column: 1 / -1; }
+
+  /* Closing panel -- the only dark block on the page, so the section ends on the CTA. */
+  .svc-close { margin-top: 2.2rem; padding: 1.9rem 2rem; border-radius: 4px; background: var(--charcoal); }
+  .svc-close h3 { font-size: 1.28rem; color: var(--charcoal-ink); }
+  .svc-close p { margin-top: 0.85rem; font-size: 0.96rem; max-width: 62ch; color: color-mix(in srgb, var(--charcoal-ink) 80%, transparent); }
+  .svc-close p.svc-close-start { font-family: 'Bitter', serif; font-weight: 700; font-size: 1rem; color: var(--charcoal-ink); }
+  .svc-close .link-cta { margin-top: 1.5rem; color: var(--charcoal-ink); border-bottom-color: var(--gold-bright); }
+  .svc-close .link-cta:hover { color: var(--gold-bright); }
+
+  @media (min-width: 781px) {
+    /* Nothing to expand on desktop -- stop the summary swallowing clicks as a toggle. */
+    .svc-head { pointer-events: none; }
+    /* The three add-on cards hold different amounts of copy, so pin the gold value
+       bars to the bottom of each and let them line up across the row instead of
+       floating at three different heights. nth-last-child(2) is whatever sits
+       directly above the value bar, and supplies the gap margin-top:auto can't. */
+    .svc-addons .svc { display: flex; flex-direction: column; }
+    .svc-addons .svc-body { flex: 1; display: flex; flex-direction: column; }
+    .svc-addons .svc-body > *:nth-last-child(2) { margin-bottom: 1.35rem; }
+    .svc-addons .svc-value { margin-top: auto; }
+  }
+  @media (max-width: 780px) {
+    .svc-stack { margin-top: 2rem; gap: 0.85rem; }
+    .svc-addons { grid-template-columns: 1fr; gap: 0.85rem; }
+    .svc--base .svc-body { display: block; }
+    .svc-head { cursor: pointer; padding: 1.25rem 3.3rem 1.25rem 1.3rem; }
+    .svc[open] .svc-head { padding-bottom: 0; }
+    .svc-body { padding: 0 1.3rem 1.35rem; }
+    .svc-head h3, .svc--base .svc-head h3 { font-size: 1.1rem; }
+    .svc-chev {
+      display: block; position: absolute; right: 1.35rem; top: 50%;
+      width: 9px; height: 9px; border-right: 2px solid var(--gold); border-bottom: 2px solid var(--gold);
+      transform: translateY(-70%) rotate(45deg); transition: transform 0.2s ease;
+    }
+    .svc[open] .svc-chev { transform: translateY(-25%) rotate(-135deg); }
+    .svc-close { margin-top: 1.8rem; padding: 1.6rem 1.4rem; }
+  }
+
   /* Examples */
   .example-grid { margin-top: 2.6rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.3rem; }
   .example-card {
@@ -268,8 +362,6 @@
 </style>
 </head>
 <body>
-
-
 <header class="site">
   <div class="wrap">
     <div class="logo">
@@ -305,30 +397,125 @@
 <section id="what" class="alt">
   <div class="wrap reveal">
     <div class="eyebrow">What we do</div>
-    <h2>Here to help with the everyday stuff</h2>
-    <p class="lede">Pick whichever of these actually solves a problem for you. We don't do one-size-fits-all packages — we sit down, figure out what's actually going to help your business, and build that.</p>
-    <div class="work-grid">
-      <div class="work-card">
-        <svg class="work-icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="13" r="8" fill="var(--gold)"/><circle cx="16" cy="13" r="3.2" fill="var(--surface)"/><path d="M16 29 L11.5 19.5 L20.5 19.5 Z" fill="var(--gold)"/></svg>
-        <div class="num">01</div>
-        <h3>Be found, and look the part</h3>
-        <p>We make sure people can actually find you — and that what they find looks the part.</p>
-        <p class="includes">Includes: your Google listing, a proper website, your menu or price list online</p>
+    <h2>Four things we set up for you</h2>
+    <p class="lede">The first one is the foundation. The rest are optional — add them when they'd solve a real problem, not before.</p>
+
+    <div class="svc-stack">
+
+      <details class="svc svc--base" open>
+        <summary class="svc-head">
+          <div class="svc-tagrow">
+            <svg class="svc-icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="13" r="8" fill="var(--gold)"/><circle cx="16" cy="13" r="3.2" fill="var(--surface)"/><path d="M16 29 L11.5 19.5 L20.5 19.5 Z" fill="var(--gold)"/></svg>
+            <span class="svc-tag svc-tag--base">Start here</span>
+          </div>
+          <h3>Get Found &amp; Get Enquiries</h3>
+          <p class="svc-sub">Your website, working as a sales tool</p>
+          <span class="svc-chev" aria-hidden="true"></span>
+        </summary>
+        <div class="svc-body">
+          <p class="svc-desc">A professional website and Google Business Profile that help people find you, trust you and take the first step — including a simple way to start collecting Google reviews. Every enquiry lands straight in your inbox — simple as that.</p>
+          <div class="svc-includes">
+            <div class="svc-label">Includes</div>
+            <ul class="svc-list">
+              <li>Professional website</li>
+              <li>Google Business Profile, set up and review-ready</li>
+              <li>Enquiry &amp; contact forms</li>
+            </ul>
+          </div>
+          <p class="svc-value">Turn more people looking at your website into real enquiries — backed by reviews people trust.</p>
+        </div>
+      </details>
+
+      <div class="svc-addons">
+
+        <details class="svc" open>
+          <summary class="svc-head">
+            <div class="svc-tagrow">
+              <svg class="svc-icon" viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="7" width="24" height="21" rx="3" fill="var(--gold)"/><rect x="4" y="13" width="24" height="3" fill="var(--surface)"/><rect x="9" y="3" width="3.4" height="7" rx="1.7" fill="var(--gold)"/><rect x="19.6" y="3" width="3.4" height="7" rx="1.7" fill="var(--gold)"/><rect x="9" y="19" width="5" height="5" rx="1" fill="var(--surface)"/></svg>
+              <span class="svc-tag svc-tag--addon">Optional add-on</span>
+            </div>
+            <h3>Make Booking Easy</h3>
+            <p class="svc-sub">Let customers book 24/7</p>
+            <span class="svc-chev" aria-hidden="true"></span>
+          </summary>
+          <div class="svc-body">
+            <p class="svc-desc">Give customers an easy way to book appointments, consultations or services whenever it suits them — without phone tag. Confirmations and reminders are sent automatically, built into the booking tool itself.</p>
+            <div class="svc-includes">
+              <div class="svc-label">Includes</div>
+              <ul class="svc-list">
+                <li>Online booking</li>
+                <li>Automatic confirmations &amp; reminders</li>
+                <li>Rescheduling &amp; cancellations</li>
+              </ul>
+            </div>
+            <p class="svc-value">More bookings, fewer missed appointments, less time on the phone.</p>
+          </div>
+        </details>
+
+        <details class="svc" open>
+          <summary class="svc-head">
+            <div class="svc-tagrow">
+              <svg class="svc-icon" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="8" width="26" height="16" rx="3" fill="var(--gold)"/><rect x="3" y="13" width="26" height="4" fill="var(--surface)"/><rect x="6.5" y="19" width="8" height="2.4" rx="1.2" fill="var(--surface)"/></svg>
+              <span class="svc-tag svc-tag--addon">Optional add-on</span>
+            </div>
+            <h3>Get Paid Faster</h3>
+            <p class="svc-sub">Quotes, invoices and payments made simple</p>
+            <span class="svc-chev" aria-hidden="true"></span>
+          </summary>
+          <div class="svc-body">
+            <p class="svc-desc">Send professional quotes, get approval online, turn accepted work into invoices and make it easy for customers to pay.</p>
+            <div class="svc-includes">
+              <div class="svc-label">Includes</div>
+              <ul class="svc-list">
+                <li>Quotes &amp; online approval</li>
+                <li>Invoices</li>
+                <li>Online payments</li>
+                <li>Payment tracking</li>
+              </ul>
+            </div>
+            <p class="svc-value">Get paid faster, with less chasing.</p>
+          </div>
+        </details>
+
+        <details class="svc" open>
+          <summary class="svc-head">
+            <div class="svc-tagrow">
+              <svg class="svc-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 6a10 10 0 1 1-8.7 5" fill="none" stroke="var(--gold)" stroke-width="3.4" stroke-linecap="round"/><path d="M16 2 L16 10.5 L9.5 6.25 Z" fill="var(--gold)"/><circle cx="16" cy="16" r="3.1" fill="var(--gold)"/></svg>
+              <span class="svc-tag svc-tag--addon">Optional add-on</span>
+            </div>
+            <h3>Let Your Business Run Itself</h3>
+            <p class="svc-sub">Never let a lead go cold</p>
+            <span class="svc-chev" aria-hidden="true"></span>
+          </summary>
+          <div class="svc-body">
+            <p class="svc-desc">We set it up once, then simple things happen automatically — so nothing relies on you remembering to chase it. This is the one that needs your enquiries and customers tracked in one place, not just landing in an inbox.</p>
+            <div class="svc-includes">
+              <div class="svc-label">Includes</div>
+              <ul class="svc-list">
+                <li>Lead &amp; customer tracking</li>
+                <li>Automatic follow-ups</li>
+                <li>Review requests</li>
+              </ul>
+            </div>
+            <div class="svc-egwrap">
+              <div class="svc-label">For example</div>
+              <ul class="svc-eg">
+                <li>Quote sent, no reply &rarr; automatic follow-up</li>
+                <li>Job marked complete &rarr; review request sent</li>
+              </ul>
+            </div>
+            <p class="svc-value">Save time and never let a lead slip through the cracks.</p>
+          </div>
+        </details>
+
       </div>
-      <div class="work-card">
-        <svg class="work-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4c-4.5 0-6.5 3.5-6.5 8v6l-3 4.5h19l-3-4.5v-6c0-4.5-2-8-6.5-8Z" fill="var(--gold)"/><rect x="13" y="25.5" width="6" height="3.5" rx="1.75" fill="var(--gold)"/></svg>
-        <div class="num">02</div>
-        <h3>Never miss a customer</h3>
-        <p>However someone tries to reach you, we make sure it doesn't fall through the cracks.</p>
-        <p class="includes">Includes: missed-call handling, online booking, appointment reminders</p>
-      </div>
-      <div class="work-card">
-        <svg class="work-icon" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="9" width="26" height="16" rx="3" fill="var(--gold)"/><rect x="3" y="14" width="26" height="4" fill="var(--surface)"/></svg>
-        <div class="num">03</div>
-        <h3>Get paid, without the hassle</h3>
-        <p>Less chasing, less paperwork, more time for the actual job.</p>
-        <p class="includes">Includes: online payments, and the boring admin behind the scenes</p>
-      </div>
+    </div>
+
+    <div class="svc-close">
+      <h3>Your business, working smarter</h3>
+      <p>From finding new customers to getting paid, we give you simple digital tools to run more of your business — without the hassle. We set it all up for you, so there's no new software to learn.</p>
+      <p class="svc-close-start">Start with what you need. Add more as your business grows.</p>
+      <a class="link-cta" href="pricing.html">See what it costs →</a>
     </div>
   </div>
 </section>
@@ -517,6 +704,25 @@
   }, { threshold: 0.15 });
   els.forEach(function (el) { io.observe(el); });
 
+  // #what services. The four blocks ship OPEN in the markup so that if this script
+  // never runs, nothing is hidden -- the section is just taller. On phones we collapse
+  // the three optional add-ons so all four headings fit on one screen. This fires only
+  // when the breakpoint is crossed, not on every resize, so it never yanks a card shut
+  // underneath someone who has just opened it.
+  (function () {
+    var svc = Array.prototype.slice.call(document.querySelectorAll('.svc'));
+    if (!svc.length || !window.matchMedia) { return; }
+    var mq = window.matchMedia('(max-width: 780px)');
+    function apply(e) {
+      svc.forEach(function (el) {
+        el.open = e.matches ? el.classList.contains('svc--base') : true;
+      });
+    }
+    apply(mq);
+    if (mq.addEventListener) { mq.addEventListener('change', apply); }
+    else if (mq.addListener) { mq.addListener(apply); }
+  })();
+
   // Contact form isn't wired to a backend yet (see the comment above the
   // form in the HTML) -- intercept submission honestly rather than let it
   // silently fail or 404, and point people at the working contact methods
@@ -530,6 +736,5 @@
     });
   }
 </script>
-
 </body>
 </html>
