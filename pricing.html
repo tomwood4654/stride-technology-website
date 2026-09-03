@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="What STRIDE actually costs, in plain bands, not a fixed menu.">
+<meta name="description" content="What STRIDE actually costs: £45 a month for the foundation, with optional add-ons for booking, payments and follow-ups. No setup fees.">
 <title>Pricing — STRIDE</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Bitter:wght@500;700;800&family=Karla:wght@400;500;600&display=swap');
@@ -13,18 +13,9 @@
     --ink-faint: #8a9089; --line: #ddd3bf; --gold: #a97c1f; --gold-bright: #c4941f;
     --charcoal: #4a4130; --charcoal-ink: #f1ece1;
   }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --paper: #141d17; --surface: #1b2820; --ink: #f2ece0; --ink-dim: #b9b0a0;
-      --ink-faint: #7c8a80; --line: #2c3c31; --gold: #d1a23f; --gold-bright: #e0b453;
-      --charcoal: #332c20; --charcoal-ink: #f2ece0;
-    }
-  }
-  :root[data-theme="dark"] {
-    --paper: #141d17; --surface: #1b2820; --ink: #f2ece0; --ink-dim: #b9b0a0;
-    --ink-faint: #7c8a80; --line: #2c3c31; --gold: #d1a23f; --gold-bright: #e0b453;
-    --charcoal: #332c20; --charcoal-ink: #f2ece0;
-  }
+  /* Brand palette is fixed -- the site does not switch with the visitor's device
+     dark-mode setting, so it looks the same on every device. Kept in sync with the
+     homepage, which had its dark-mode block removed for the same reason. */
 
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -68,9 +59,18 @@
   }
   .link-cta:hover { color: var(--gold); }
 
-  /* Pricing cards */
-  .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-top: 1rem; }
-  @media (max-width: 820px) { .price-grid { grid-template-columns: 1fr; } }
+  /* Pricing cards -- same shape as the homepage's #what section: one foundation
+     tier that everyone starts on, then three optional add-ons priced on top of it. */
+  .price-tag {
+    display: inline-block; font-size: 0.64rem; letter-spacing: 0.07em; text-transform: uppercase;
+    font-weight: 600; padding: 0.18rem 0.55rem; border-radius: 999px; margin-bottom: 0.75rem;
+    /* .price-card is a flex column, so without this the pill stretches to the full
+       card width instead of hugging its text. No-op inside the base card's div. */
+    align-self: flex-start;
+  }
+  .price-tag--base { background: color-mix(in srgb, var(--gold) 20%, transparent); color: var(--gold); }
+  .price-tag--addon { background: color-mix(in srgb, var(--ink) 7%, transparent); color: var(--ink-faint); }
+
   .price-card { background: var(--surface); border: 1px solid var(--line); border-radius: 5px; padding: 1.8rem 1.7rem; display: flex; flex-direction: column; }
   .price-card h2 { font-size: 1.2rem; }
   .price-card .range { font-family: 'Bitter', serif; font-weight: 800; font-size: 1.5rem; color: var(--gold); margin-top: 0.6rem; }
@@ -79,6 +79,32 @@
   .price-card ul { margin: 1rem 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
   .price-card li { font-size: 0.85rem; color: var(--ink-dim); padding-left: 1rem; position: relative; }
   .price-card li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
+
+  .price-base {
+    margin-top: 1rem; border-color: color-mix(in srgb, var(--gold) 45%, var(--line));
+    display: grid; grid-template-columns: 1.15fr 1fr; column-gap: 2.6rem; align-items: start;
+  }
+  .price-base h2 { font-size: 1.4rem; }
+  .price-base .range { font-size: 2rem; }
+  .price-base ul { margin-top: 0; }
+  .price-base .price-base-right { padding-top: 0.3rem; }
+  .price-sublabel { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: var(--ink-faint); }
+  @media (max-width: 820px) { .price-base { grid-template-columns: 1fr; } .price-base ul { margin-top: 1rem; } }
+
+  .price-addons-head { margin-top: 2.6rem; }
+  .price-addons-head h2 { font-size: 1.25rem; }
+  .price-addons-head p { margin-top: 0.6rem; color: var(--ink-dim); font-size: 0.95rem; max-width: 60ch; }
+  .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-top: 1.3rem; }
+  @media (max-width: 820px) { .price-grid { grid-template-columns: 1fr; } }
+
+  .price-bundle {
+    margin-top: 1.6rem; padding: 1.5rem 1.7rem; border-radius: 5px; background: var(--charcoal);
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem;
+  }
+  .price-bundle h3 { font-size: 1.12rem; color: var(--charcoal-ink); }
+  .price-bundle p { margin-top: 0.4rem; font-size: 0.9rem; color: color-mix(in srgb, var(--charcoal-ink) 78%, transparent); max-width: 46ch; }
+  .price-bundle .bundle-price { font-family: 'Bitter', serif; font-weight: 800; font-size: 1.9rem; color: var(--gold-bright); white-space: nowrap; }
+  .price-bundle .bundle-price span { display: block; font-family: 'Karla', sans-serif; font-weight: 400; font-size: 0.78rem; color: color-mix(in srgb, var(--charcoal-ink) 65%, transparent); }
   .price-note { margin-top: 2.2rem; padding: 1.2rem 1.4rem; background: var(--surface); border: 1px solid var(--line); border-radius: 5px; font-size: 0.92rem; color: var(--ink-dim); max-width: 70ch; }
   .price-terms { margin-top: 1.6rem; display: flex; gap: 1.6rem; flex-wrap: wrap; font-size: 0.85rem; color: var(--ink-faint); }
   .price-terms span { display: flex; align-items: center; gap: 0.4rem; }
@@ -156,41 +182,75 @@
     <div class="page-head">
       <div class="eyebrow">Pricing</div>
       <h1>What it actually costs</h1>
-      <p class="lede">Rough bands, not a fixed menu — the exact price depends on what your business actually needs, worked out together, not guessed from a price list.</p>
+      <p class="lede">One monthly price for the foundation, then add the pieces you actually need. No setup fee, no big bill up front, and nothing you can't cancel.</p>
+    </div>
+
+    <div class="price-card price-base">
+      <div>
+        <span class="price-tag price-tag--base">Start here</span>
+        <h2>Get Found &amp; Get Enquiries</h2>
+        <div class="range">£45<span> / month</span></div>
+        <p class="desc">A professional website and Google Business Profile that help people find you, trust you and take the first step — set up, hosted and looked after. Every enquiry lands straight in your inbox.</p>
+      </div>
+      <div class="price-base-right">
+        <div class="price-sublabel">Includes</div>
+        <ul>
+          <li>Professional website, on your own domain</li>
+          <li>Hosting, updates and changes when you need them</li>
+          <li>Google Business Profile, set up and review-ready</li>
+          <li>Enquiry &amp; contact forms</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="price-addons-head">
+      <h2>Then add what you need</h2>
+      <p>Each one is optional and priced on top of the foundation. Add one now and another later — or none at all, if the website is all you need.</p>
     </div>
 
     <div class="price-grid">
       <div class="price-card">
-        <h2>Getting started</h2>
-        <div class="range">£25–45<span> / month</span></div>
-        <p class="desc">A proper website and a Google listing that actually works for you — the basics done properly, on your own domain.</p>
+        <span class="price-tag price-tag--addon">Optional add-on</span>
+        <h2>Make Booking Easy</h2>
+        <div class="range">+£20<span> / month</span></div>
+        <p class="desc">Let customers book appointments, consultations or services whenever it suits them — without phone tag.</p>
         <ul>
-          <li>Your own domain, hosted properly</li>
-          <li>Google listing set up and kept accurate</li>
-          <li>Your menu or price list online, if relevant</li>
-        </ul>
-      </div>
-      <div class="price-card">
-        <h2>Growing</h2>
-        <div class="range">£60–120<span> / month</span></div>
-        <p class="desc">Everything in Getting Started, plus not losing customers to a missed call or a forgotten appointment.</p>
-        <ul>
-          <li>Everything in Getting Started</li>
-          <li>Missed-call handling</li>
           <li>Online booking</li>
-          <li>Appointment reminders</li>
+          <li>Automatic confirmations &amp; reminders</li>
+          <li>Rescheduling &amp; cancellations</li>
         </ul>
       </div>
       <div class="price-card">
-        <h2>Full support</h2>
-        <div class="range">£120–250<span> / month</span></div>
-        <p class="desc">Everything above, plus taking payments online and help with the admin behind the scenes. Priced around what you actually need.</p>
+        <span class="price-tag price-tag--addon">Optional add-on</span>
+        <h2>Get Paid Faster</h2>
+        <div class="range">+£25<span> / month</span></div>
+        <p class="desc">Send professional quotes, get approval online, turn accepted work into invoices and make it easy for customers to pay.</p>
         <ul>
-          <li>Everything in Growing</li>
-          <li>Online payments, no more chasing</li>
-          <li>Ongoing help with the boring admin</li>
+          <li>Quotes &amp; online approval</li>
+          <li>Invoices</li>
+          <li>Online payments</li>
+          <li>Payment tracking</li>
         </ul>
       </div>
+      <div class="price-card">
+        <span class="price-tag price-tag--addon">Optional add-on</span>
+        <h2>Let Your Business Run Itself</h2>
+        <div class="range">+£35<span> / month</span></div>
+        <p class="desc">Your enquiries and customers tracked in one place, with simple things happening automatically so nothing relies on you remembering to chase it.</p>
+        <ul>
+          <li>Lead &amp; customer tracking</li>
+          <li>Automatic follow-ups</li>
+          <li>Review requests</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="price-bundle">
+      <div>
+        <h3>Want the lot?</h3>
+        <p>All four together — the website, booking, getting paid and the automatic follow-ups — for less than adding them one by one.</p>
+      </div>
+      <div class="bundle-price">£110<span>per month, instead of £125</span></div>
     </div>
 
     <div class="price-terms">
@@ -200,8 +260,10 @@
     </div>
 
     <div class="price-note">
-      Got more than one site, or need something more involved? These bands are built around a single-site local business — get in touch and we'll figure out what's fair for something bigger.
+      <strong>A couple of honest notes.</strong> If you take card payments, the card provider charges a small percentage of each transaction. That's their fee, not ours — we don't add anything on top, and we'll tell you exactly what it is before you sign up to anything. And these prices are built around a single-site local business: if you've got more than one location, or something more involved in mind, get in touch and we'll work out what's fair rather than guess at it here.
     </div>
+
+    <a class="link-cta" href="index.html#contact">Talk it through first →</a>
 
   </div>
 </main>
