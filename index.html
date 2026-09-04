@@ -95,17 +95,6 @@
     .hero .sub { margin-left: auto; margin-right: auto; }
     .hero .cta { margin-left: auto; margin-right: auto; }
   }
-  /* Mobile-only section order: About (the founder photo + story) follows straight after the
-     hero, ahead of the service sections — see .page-flow below. */
-  @media (max-width: 780px) {
-    .page-flow { display: flex; flex-direction: column; }
-    .page-flow > .hero { order: 1; }
-    .page-flow > #why { order: 2; }
-    .page-flow > #what { order: 3; }
-    .page-flow > #how { order: 4; }
-    .page-flow > #examples { order: 5; }
-    .page-flow > #contact { order: 6; }
-  }
 
   .link-cta {
     display: inline-flex; align-items: center; gap: 0.5rem;
@@ -204,13 +193,9 @@
   .svc--base .svc-includes { margin-top: 1rem; }
   .svc--base .svc-value { grid-column: 1 / -1; }
 
-  /* Closing panel -- the only dark block on the page, so the section ends on the CTA. */
-  .svc-close { margin-top: 2.2rem; padding: 1.9rem 2rem; border-radius: 4px; background: var(--charcoal); }
-  .svc-close h3 { font-size: 1.28rem; color: var(--charcoal-ink); }
-  .svc-close p { margin-top: 0.85rem; font-size: 0.96rem; max-width: 62ch; color: color-mix(in srgb, var(--charcoal-ink) 80%, transparent); }
-  .svc-close p.svc-close-start { font-family: 'Bitter', serif; font-weight: 700; font-size: 1rem; color: var(--charcoal-ink); }
-  .svc-close .link-cta { margin-top: 1.5rem; color: var(--charcoal-ink); border-bottom-color: var(--gold-bright); }
-  .svc-close .link-cta:hover { color: var(--gold-bright); }
+  /* Final CTA -- the offer and the "we set it up for you" message are already said in
+     the section intro and in #how, so this is just the pricing link, not a recap. */
+  .svc-final-cta { margin-top: 2.2rem; text-align: center; }
 
   @media (min-width: 781px) {
     /* Nothing to expand on desktop -- stop the summary swallowing clicks as a toggle. */
@@ -238,7 +223,6 @@
       transform: translateY(-70%) rotate(45deg); transition: transform 0.2s ease;
     }
     .svc[open] .svc-chev { transform: translateY(-25%) rotate(-135deg); }
-    .svc-close { margin-top: 1.8rem; padding: 1.6rem 1.4rem; }
   }
 
   /* Examples */
@@ -379,7 +363,6 @@
   </div>
 </header>
 
-<div class="page-flow">
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-text">
@@ -507,10 +490,7 @@
       </div>
     </div>
 
-    <div class="svc-close">
-      <h3>Your business, working smarter</h3>
-      <p>From finding new customers to getting paid, we give you simple digital tools to run more of your business — without the hassle. We set it all up for you, so there's no new software to learn.</p>
-      <p class="svc-close-start">Start with what you need. Add more as your business grows.</p>
+    <div class="svc-final-cta">
       <a class="link-cta" href="pricing.html">See what it costs →</a>
     </div>
   </div>
@@ -646,7 +626,6 @@
     </div>
   </div>
 </section>
-</div>
 
 <footer class="site">
   <div class="wrap">
