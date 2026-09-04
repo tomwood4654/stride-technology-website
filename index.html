@@ -204,7 +204,8 @@
        bars to the bottom of each and let them line up across the row instead of
        floating at three different heights. nth-last-child(2) is whatever sits
        directly above the value bar, and supplies the gap margin-top:auto can't. */
-    .svc-addons .svc { display: flex; flex-direction: column; }
+    .svc-addons { align-items: stretch; }
+    .svc-addons .svc { display: flex; flex-direction: column; height: 100%; }
     .svc-addons .svc-body { flex: 1; display: flex; flex-direction: column; }
     .svc-addons .svc-body > *:nth-last-child(2) { margin-bottom: 1.35rem; }
     .svc-addons .svc-value { margin-top: auto; }
@@ -388,7 +389,7 @@
       <details class="svc svc--base" open>
         <summary class="svc-head">
           <div class="svc-tagrow">
-            <svg class="svc-icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="13" r="8" fill="var(--gold)"/><circle cx="16" cy="13" r="3.2" fill="var(--surface)"/><path d="M16 29 L11.5 19.5 L20.5 19.5 Z" fill="var(--gold)"/></svg>
+            <svg class="svc-icon" viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="19" width="10" height="9" rx="1.5" fill="var(--gold)"/><rect x="18" y="19" width="10" height="9" rx="1.5" fill="var(--gold)"/><rect x="11" y="8" width="10" height="9" rx="1.5" fill="var(--gold)"/><rect x="4" y="23.5" width="10" height="2" fill="var(--surface)"/><rect x="18" y="23.5" width="10" height="2" fill="var(--surface)"/><rect x="11" y="12.5" width="10" height="2" fill="var(--surface)"/></svg>
           </div>
           <h3>The Foundations</h3>
           <p class="svc-sub">Get found and start winning business</p>
