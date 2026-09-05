@@ -133,7 +133,7 @@
   section.alt .work-card { background: var(--surface); }
   @media (min-width: 820px) {
     .work-card:not(:last-child)::after {
-      content: '→'; position: absolute; top: 50%; right: -1.3rem;
+      content: '→'; position: absolute; top: 50%; right: -0.65rem; z-index: 1;
       transform: translate(50%, -50%); font-family: 'Bitter', serif;
       font-size: 1.3rem; font-weight: 700; color: var(--gold);
     }
@@ -564,7 +564,7 @@
         <div class="mock-browser" style="--mock-bg:#f5efe2; --mock-ink:#2f4438; --mock-accent:#b5652d; --mock-font:'Fraunces',serif;">
           <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="mock-url">stride-example-plumbing.netlify.app</span></div>
           <div class="mock-hero">
-            <div class="mock-headline">Trusted plumbing &amp; heating, done properly the first time.</div>
+            <div class="mock-headline">Trusted plumbing &amp; heating, done properly.</div>
             <div class="mock-accent-bar"></div>
           </div>
         </div>
