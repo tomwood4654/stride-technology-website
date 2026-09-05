@@ -216,15 +216,16 @@
     }
     .svc-pricing-top:hover { color: var(--gold); }
     .svc-pricing-bottom { display: none; }
-    /* The three add-on cards hold different amounts of copy, so pin the gold value
-       bars to the bottom of each and let them line up across the row instead of
-       floating at three different heights. nth-last-child(2) is whatever sits
-       directly above the value bar, and supplies the gap margin-top:auto can't. */
-    .svc-addons { align-items: stretch; }
-    .svc-addons .svc { display: flex; flex-direction: column; height: 100%; }
-    .svc-addons .svc-body { flex: 1; display: flex; flex-direction: column; }
-    .svc-addons .svc-body > *:nth-last-child(2) { margin-bottom: 1.35rem; }
-    .svc-addons .svc-value { margin-top: auto; }
+    /* The three add-on cards hold different amounts of copy, so the gold value bar
+       needs to sit at a fixed spot at the bottom of every card regardless of how
+       much text sits above it. Flex + margin-top:auto on a <details> element proved
+       unreliable across browsers (twice), so this is deliberately not flex-based:
+       .svc-value is pinned with position:absolute at a fixed inset, and the JS
+       below reserves exactly enough space above it (padding-bottom on .svc-body)
+       and equalizes the three cards' overall height, so all three end up identical. */
+    .svc-addons .svc { position: relative; }
+    .svc-addons .svc-body { position: relative; }
+    .svc-addons .svc-value { position: absolute; left: 1.7rem; right: 1.7rem; bottom: 1.6rem; margin-top: 0; }
   }
   @media (max-width: 780px) {
     .svc-stack { margin-top: 2rem; gap: 0.85rem; }
@@ -732,20 +733,31 @@
   })();
 
   // The three add-on cards should line up as equal-height, with the gold value
-  // box pinned to the bottom of each. CSS alone (flex + margin-top:auto on a
-  // <details> element) proved unreliable across browsers, so this measures the
-  // three cards' natural heights and sets them all to the tallest -- a small,
-  // resize-aware JS fallback rather than a third CSS attempt.
+  // box pinned to the exact same spot at the bottom of each. .svc-value is
+  // position:absolute (see CSS) so it never depends on flex/<details> behaving --
+  // this just (1) reserves enough padding-bottom on every .svc-body to clear the
+  // tallest of the three value boxes, then (2) equalizes the three cards' overall
+  // height so the absolutely-positioned boxes land at the same Y on the page.
+  // Re-runs on resize (debounced) and on webfonts finishing, since text reflow
+  // after font load can otherwise leave stale measurements.
   (function () {
     var cards = Array.prototype.slice.call(document.querySelectorAll('.svc-addons > .svc'));
+    var bodies = Array.prototype.slice.call(document.querySelectorAll('.svc-addons .svc-body'));
+    var values = Array.prototype.slice.call(document.querySelectorAll('.svc-addons .svc-value'));
     if (cards.length < 2 || !window.matchMedia) { return; }
     var mq = window.matchMedia('(min-width: 781px)');
+    var rootPx = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
     function equalize() {
       cards.forEach(function (el) { el.style.height = 'auto'; });
+      bodies.forEach(function (el) { el.style.paddingBottom = ''; });
       if (!mq.matches) { return; }
-      var max = 0;
-      cards.forEach(function (el) { max = Math.max(max, el.offsetHeight); });
-      cards.forEach(function (el) { el.style.height = max + 'px'; });
+      var valueMax = 0;
+      values.forEach(function (el) { valueMax = Math.max(valueMax, el.offsetHeight); });
+      var reserved = valueMax + rootPx * (1.6 + 1.1); // clears the tallest value box (bottom:1.6rem inset) plus a gap above it
+      bodies.forEach(function (el) { el.style.paddingBottom = reserved + 'px'; });
+      var cardMax = 0;
+      cards.forEach(function (el) { cardMax = Math.max(cardMax, el.offsetHeight); });
+      cards.forEach(function (el) { el.style.height = cardMax + 'px'; });
     }
     equalize();
     var resizeTimer;
@@ -753,6 +765,7 @@
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(equalize, 120);
     });
+    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(equalize); }
   })();
 
   // Contact form isn't wired to a backend yet (see the comment above the
