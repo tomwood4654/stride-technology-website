@@ -295,12 +295,13 @@
   .form-fallback { font-size: 0.85rem; color: var(--ink-dim); background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 0.9rem 1rem; }
 
   /* Founder note */
-  .founder { display: grid; grid-template-columns: 220px 1fr; gap: 2.4rem; align-items: start; margin-top: 2.4rem; }
-  @media (max-width: 620px) { .founder { grid-template-columns: 1fr; } }
+  .founder { display: grid; grid-template-columns: 320px 1fr; gap: 2.4rem; align-items: start; margin-top: 2.4rem; }
+  @media (max-width: 700px) { .founder { grid-template-columns: 1fr; } }
   .founder .photo {
-    width: 220px; height: 288px; object-fit: cover; border-radius: 4px;
+    width: 320px; height: 427px; object-fit: cover; border-radius: 4px;
     border: 1px solid var(--line);
   }
+  @media (max-width: 700px) { .founder .photo { width: 100%; height: auto; aspect-ratio: 3 / 4; } }
   .founder .signoff { margin-top: 0; font-family: 'Bitter', serif; font-weight: 700; color: var(--ink); font-size: 0.98rem; }
   .founder .signoff span { display: block; font-family: 'Karla', sans-serif; font-weight: 400; color: var(--ink-dim); font-size: 0.85rem; margin-top: 0.15rem; }
   .founder p { font-size: 1.05rem; color: var(--ink); max-width: 58ch; }
@@ -361,9 +362,9 @@
     </div>
     <nav class="site-nav">
       <a href="#what">What we do</a>
+      <a href="#how">How it works</a>
       <a href="pricing.html">Pricing</a>
       <a href="#examples">Examples</a>
-      <a href="faq.html">FAQ</a>
       <a href="#why">About</a>
       <a class="cta-link" href="https://wa.me/447880329549" target="_blank" rel="noopener">WhatsApp us</a>
     </nav>
@@ -657,6 +658,7 @@
       <div class="footer-col">
         <h4>Quick links</h4>
         <a href="index.html#what">What we do</a>
+        <a href="index.html#how">How it works</a>
         <a href="pricing.html">Pricing</a>
         <a href="index.html#examples">Examples</a>
         <a href="faq.html">FAQ</a>
