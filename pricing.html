@@ -70,7 +70,7 @@
   }
   .price-tag--addon { background: color-mix(in srgb, var(--ink) 7%, transparent); color: var(--ink-faint); }
 
-  .price-card { background: var(--surface); border: 1px solid var(--line); border-radius: 5px; padding: 1.8rem 1.7rem; display: flex; flex-direction: column; }
+  .price-card { background: var(--surface); border: 1px solid var(--line); border-radius: 5px; padding: 1.8rem 1.7rem; display: flex; flex-direction: column; scroll-margin-top: 90px; }
   .price-card h2 { font-size: 1.2rem; }
   .price-card .range { font-family: 'Bitter', serif; font-weight: 800; font-size: 1.5rem; color: var(--gold); margin-top: 0.6rem; }
   .price-card .range span { font-family: 'Karla', sans-serif; font-weight: 400; font-size: 0.85rem; color: var(--ink-faint); }
@@ -184,7 +184,7 @@
       <p class="lede">One monthly price for the foundation, then add the pieces you actually need. No setup fee, no big bill up front, and nothing you can't cancel.</p>
     </div>
 
-    <div class="price-card price-base">
+    <div class="price-card price-base" id="foundation">
       <div>
         <h2>The Foundations</h2>
         <div class="range">£45<span> / month</span></div>
@@ -207,7 +207,7 @@
     </div>
 
     <div class="price-grid">
-      <div class="price-card">
+      <div class="price-card" id="booking">
         <span class="price-tag price-tag--addon">Optional add-on</span>
         <h2>Make Booking Easy</h2>
         <div class="range">+£20<span> / month</span></div>
@@ -218,7 +218,7 @@
           <li>Rescheduling &amp; cancellations</li>
         </ul>
       </div>
-      <div class="price-card">
+      <div class="price-card" id="payments">
         <span class="price-tag price-tag--addon">Optional add-on</span>
         <h2>Get Paid Without the Hassle</h2>
         <div class="range">+£25<span> / month</span></div>
@@ -229,7 +229,7 @@
           <li>Payment reminders</li>
         </ul>
       </div>
-      <div class="price-card">
+      <div class="price-card" id="automation">
         <span class="price-tag price-tag--addon">Optional add-on</span>
         <h2>Automate the Simple Things</h2>
         <div class="range">+£35<span> / month</span></div>
