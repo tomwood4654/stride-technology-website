@@ -224,7 +224,13 @@
        below reserves exactly enough space above it (padding-bottom on .svc-body)
        and equalizes the three cards' overall height, so all three end up identical. */
     .svc-addons .svc { position: relative; }
-    .svc-addons .svc-body { position: relative; }
+    /* Deliberately NOT position:relative on .svc-body -- .svc-value's absolute
+       positioning must skip past it and anchor to .svc (the outer card, which
+       JS equalizes to a shared height below). If .svc-body were the positioning
+       context instead, the box would anchor to .svc-body's own natural height,
+       which differs per card even after .svc itself is equalized -- exactly the
+       bug seen in testing (the card with the most natural content looked right,
+       the other two left the box stranded high up inside the now-taller card). */
     .svc-addons .svc-value { position: absolute; left: 1.7rem; right: 1.7rem; bottom: 1.6rem; margin-top: 0; }
   }
   @media (max-width: 780px) {
