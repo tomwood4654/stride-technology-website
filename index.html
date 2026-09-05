@@ -256,17 +256,15 @@
   .example-note { margin-top: 1.4rem; font-size: 0.8rem; color: var(--ink-faint); }
 
   /* Contact */
-  .contact-grid { display: grid; grid-template-columns: auto 1fr; gap: 3rem; margin-top: 2.4rem; align-items: start; }
+  .contact-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 3rem; margin-top: 2.4rem; align-items: start; }
   @media (max-width: 700px) { .contact-grid { grid-template-columns: 1fr; } }
-  .contact-location {
-    margin-top: 2.6rem; display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center;
-    padding-top: 2.2rem; border-top: 1px solid var(--line);
-  }
-  @media (max-width: 700px) { .contact-location { grid-template-columns: 1fr; } }
-  .contact-location h3 { font-size: 1rem; }
-  .contact-location p { margin-top: 0.5rem; color: var(--ink-dim); font-size: 0.9rem; line-height: 1.5; }
+  .contact-left { display: flex; flex-direction: column; gap: 1.8rem; }
+  .contact-right { display: flex; flex-direction: column; }
+  .contact-right h3 { font-size: 1rem; }
+  .contact-right p { margin-top: 0.5rem; color: var(--ink-dim); font-size: 0.9rem; line-height: 1.5; }
   .location-map {
-    width: 100%; max-width: 420px; height: 200px; border: 1px solid var(--line); border-radius: 4px;
+    width: 100%; max-width: 100%; height: 280px; margin-top: 1.1rem;
+    border: 1px solid var(--line); border-radius: 4px;
     filter: grayscale(0.3) contrast(1.05);
   }
   .contact-direct { display: flex; flex-direction: column; }
@@ -501,7 +499,7 @@
 <section id="how">
   <div class="wrap reveal">
     <div class="eyebrow">How it works</div>
-    <h2>We're here to help</h2>
+    <h2>From scratch, or a step up</h2>
     <p class="lede">Whether you're starting from scratch or ready to take what you've got to the next level.</p>
     <div class="work-grid">
       <div class="work-card">
@@ -599,36 +597,36 @@
     <h2>Let's have a chat</h2>
     <p class="lede">However's easiest for you — message on WhatsApp, drop an email, or fill in the form and we'll come back to you.</p>
     <div class="contact-grid">
-      <div class="contact-direct">
-        <a class="link-cta" href="https://wa.me/447880329549" target="_blank" rel="noopener">WhatsApp us →</a>
-        <a class="link-cta" href="mailto:hello@stridetechnology.com" style="margin-top:1.1rem;">Email us →</a>
-      </div>
-      <form class="contact-form" id="contact-form">
-        <!-- Not wired to a backend yet -- see the submit handler below.
-             This form's design is finished; only the send-it-somewhere
-             part is still to do (Netlify Forms needs a build-triggered
-             deploy to auto-detect it, which this project's file-digest
-             deploy method deliberately doesn't use -- see
-             14_Developer_Methodology.docx on why that deploy method was
-             chosen in the first place). Swap in a real handler
-             (Formspree, a Netlify build-triggered deploy, or similar)
-             when ready, and remove the JS intercept below. -->
-        <div class="form-row">
-          <label>Your name<input type="text" name="name" required></label>
-          <label>Business name<input type="text" name="business" required></label>
+      <div class="contact-left">
+        <div class="contact-direct">
+          <a class="link-cta" href="https://wa.me/447880329549" target="_blank" rel="noopener">WhatsApp us →</a>
+          <a class="link-cta" href="mailto:hello@stridetechnology.com" style="margin-top:1.1rem;">Email us →</a>
         </div>
-        <label>Best way to reach you (phone or email)<input type="text" name="contact" required></label>
-        <label>What do you need help with?<textarea name="message" rows="3"></textarea></label>
-        <button type="submit" class="form-submit">Send</button>
-        <p class="form-fallback" id="contact-form-fallback" hidden>Thanks for filling this in — our form isn't fully connected yet. For now, please message us on WhatsApp or drop an email using the links alongside, and we'll get straight back to you.</p>
-      </form>
-    </div>
-    <div class="contact-location">
-      <div>
+        <form class="contact-form" id="contact-form">
+          <!-- Not wired to a backend yet -- see the submit handler below.
+               This form's design is finished; only the send-it-somewhere
+               part is still to do (Netlify Forms needs a build-triggered
+               deploy to auto-detect it, which this project's file-digest
+               deploy method deliberately doesn't use -- see
+               14_Developer_Methodology.docx on why that deploy method was
+               chosen in the first place). Swap in a real handler
+               (Formspree, a Netlify build-triggered deploy, or similar)
+               when ready, and remove the JS intercept below. -->
+          <div class="form-row">
+            <label>Your name<input type="text" name="name" required></label>
+            <label>Business name<input type="text" name="business" required></label>
+          </div>
+          <label>Best way to reach you (phone or email)<input type="text" name="contact" required></label>
+          <label>What's slowing you down, and where do you want to get to?<textarea name="message" rows="3"></textarea></label>
+          <button type="submit" class="form-submit">Send</button>
+          <p class="form-fallback" id="contact-form-fallback" hidden>Thanks for filling this in — our form isn't fully connected yet. For now, please message us on WhatsApp or drop an email using the links alongside, and we'll get straight back to you.</p>
+        </form>
+      </div>
+      <div class="contact-right">
         <h3>Based in Lingfield</h3>
         <p>Oast House, New Farm Place<br>Lingfield, RH7 6EF</p>
+        <iframe class="location-map" src="https://www.google.com/maps?q=51.1761001,-0.0068029&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="STRIDE's location"></iframe>
       </div>
-      <iframe class="location-map" src="https://www.google.com/maps?q=Oast+House,+New+Farm+Place,+Lingfield,+RH7+6EF&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="STRIDE's location"></iframe>
     </div>
   </div>
 </section>
