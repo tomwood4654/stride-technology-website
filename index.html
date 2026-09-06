@@ -278,10 +278,10 @@
   @media (max-width: 700px) { .contact-grid { grid-template-columns: 1fr; } }
   .contact-left { display: flex; flex-direction: column; gap: 1.8rem; }
   .contact-right { display: flex; flex-direction: column; }
-  .contact-right h3 { font-size: 1rem; }
+  .contact-right h3 { font-size: 1rem; margin-top: 1.1rem; }
   .contact-right p { margin-top: 0.5rem; color: var(--ink-dim); font-size: 0.9rem; line-height: 1.5; }
   .location-map {
-    width: 100%; max-width: 100%; height: 280px; margin-top: 1.1rem;
+    width: 100%; max-width: 100%; height: 280px;
     border: 1px solid var(--line); border-radius: 4px;
     filter: grayscale(0.3) contrast(1.05);
   }
@@ -637,9 +637,9 @@
         </form>
       </div>
       <div class="contact-right">
+        <iframe class="location-map" src="https://www.google.com/maps?q=51.1761001,-0.0068029&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="STRIDE's location"></iframe>
         <h3>Based in Lingfield</h3>
         <p>Oast House, New Farm Place<br>Lingfield, RH7 6EF</p>
-        <iframe class="location-map" src="https://www.google.com/maps?q=51.1761001,-0.0068029&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="STRIDE's location"></iframe>
       </div>
     </div>
   </div>
@@ -686,8 +686,6 @@
     </div>
     <div class="footer-bottom">
       <p class="copyright">© 2026 STRIDE</p>
-      <p class="note">Got more than one site, or need something more involved? We can go further too — just get in touch.</p>
-      <p class="note">Designed and built by STRIDE's own AI-driven process.</p>
     </div>
   </div>
 </footer>
