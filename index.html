@@ -138,6 +138,13 @@
       font-size: 1.3rem; font-weight: 700; color: var(--gold);
     }
   }
+  @media (max-width: 819px) {
+    .work-card:not(:last-child)::after {
+      content: '↓'; position: absolute; bottom: -0.65rem; left: 50%; z-index: 1;
+      transform: translate(-50%, 50%); font-family: 'Bitter', serif;
+      font-size: 1.3rem; font-weight: 700; color: var(--gold);
+    }
+  }
   .work-icon { width: 30px; height: 30px; display: block; margin-bottom: 0.9rem; }
   .work-card .num { font-family: 'Bitter', serif; font-weight: 800; font-size: 0.85rem; color: var(--ink-faint); }
   .work-card h3 { font-size: 1.15rem; margin-top: 0.5rem; }
@@ -271,6 +278,22 @@
   .example-card h3 { font-size: 1.1rem; margin-top: 0.7rem; }
   .example-card p { margin-top: 0.5rem; color: var(--ink-dim); font-size: 0.88rem; }
   .example-link { display: block; margin-top: 1rem; font-weight: 600; font-size: 0.85rem; color: var(--gold); }
+  .example-dots { display: none; }
+  @media (max-width: 780px) {
+    .example-grid {
+      display: flex; flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch; scrollbar-width: none; margin-left: -1.1rem; margin-right: -1.1rem;
+      padding: 0 1.1rem;
+    }
+    .example-grid::-webkit-scrollbar { display: none; }
+    .example-card { flex: 0 0 100%; scroll-snap-align: center; }
+    .example-dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1.2rem; }
+    .example-dots button {
+      width: 8px; height: 8px; padding: 0; border: none; border-radius: 50%;
+      background: var(--line); cursor: pointer;
+    }
+    .example-dots button.active { background: var(--gold); }
+  }
   .example-note { margin-top: 1.4rem; font-size: 0.8rem; color: var(--ink-faint); }
 
   /* Contact */
@@ -316,8 +339,8 @@
   .founder .signoff { margin-top: 0; font-family: 'Bitter', serif; font-weight: 700; color: var(--ink); font-size: 0.98rem; }
   .founder .signoff span { display: block; font-family: 'Karla', sans-serif; font-weight: 400; color: var(--ink-dim); font-size: 0.85rem; margin-top: 0.15rem; }
   .founder p { font-size: 1.05rem; color: var(--ink); max-width: 58ch; }
-  .founder p + p { margin-top: 1rem; color: var(--ink-dim); font-size: 0.98rem; }
-  .founder .signoff + p { margin-top: 1.1rem; color: var(--ink); font-size: 1.05rem; }
+  .founder p + p { margin-top: 1rem; }
+  .founder .signoff + p { margin-top: 1.1rem; }
 
   /* Footer */
   footer.site {
@@ -332,7 +355,16 @@
     padding-bottom: 2.4rem; border-bottom: 1px solid color-mix(in srgb, var(--charcoal-ink) 18%, transparent);
   }
   @media (max-width: 760px) { footer.site .footer-grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 480px) { footer.site .footer-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 480px) {
+    footer.site { padding: 2.2rem 0 1.4rem; }
+    footer.site .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.2rem 1.4rem; padding-bottom: 1.6rem; }
+    footer.site .footer-brand { grid-column: 1 / -1; }
+    footer.site .tagline { margin-top: 0.6rem; font-size: 1rem; }
+    footer.site .footer-address { margin-top: 0.7rem; }
+    footer.site .footer-col h4 { margin-bottom: 0.6rem; }
+    footer.site .footer-col a { margin-bottom: 0.4rem; }
+    footer.site .social-row { margin-top: 0.7rem; }
+  }
   footer.site .footer-col h4 {
     font-family: 'Karla', sans-serif; font-size: 0.72rem; letter-spacing: 0.07em; text-transform: uppercase;
     font-weight: 600; color: color-mix(in srgb, var(--charcoal-ink) 60%, transparent); margin-bottom: 0.9rem;
@@ -363,7 +395,6 @@
 </style>
 </head>
 <body>
-
 
 <header class="site">
   <div class="wrap">
@@ -602,6 +633,7 @@
         <span class="example-link">View live example →</span>
       </a>
     </div>
+    <div class="example-dots"></div>
   </div>
 </section>
 
@@ -710,7 +742,7 @@
     var mq = window.matchMedia('(max-width: 780px)');
     function apply(e) {
       svc.forEach(function (el) {
-        el.open = e.matches ? el.classList.contains('svc--base') : true;
+        el.open = e.matches ? false : true;
       });
     }
     apply(mq);
@@ -752,6 +784,74 @@
       resizeTimer = setTimeout(equalize, 120);
     });
     if (document.fonts && document.fonts.ready) { document.fonts.ready.then(equalize); }
+  })();
+
+  // Examples carousel. On phones the three cards become a horizontal
+  // scroll-snap track with dots, and auto-advance every few seconds --
+  // pausing for a bit after anyone touches it manually so it never fights
+  // a swipe in progress. Desktop keeps the plain grid and this does nothing.
+  (function () {
+    var grid = document.querySelector('.example-grid');
+    var cards = grid ? Array.prototype.slice.call(grid.querySelectorAll('.example-card')) : [];
+    var dotsWrap = document.querySelector('.example-dots');
+    if (!grid || cards.length < 2 || !window.matchMedia) { return; }
+    var mq = window.matchMedia('(max-width: 780px)');
+    var dots = [];
+    if (dotsWrap) {
+      cards.forEach(function (card, i) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('aria-label', 'Show example ' + (i + 1));
+        if (i === 0) { b.classList.add('active'); }
+        b.addEventListener('click', function () { goTo(i); pauseAuto(); });
+        dotsWrap.appendChild(b);
+        dots.push(b);
+      });
+    }
+    var current = 0, autoTimer = null, resumeTimer = null;
+    function setActive(i) {
+      current = i;
+      dots.forEach(function (d, idx) { d.classList.toggle('active', idx === i); });
+    }
+    function goTo(i) {
+      if (!cards[i]) { return; }
+      cards[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      setActive(i);
+    }
+    function stopAuto() {
+      if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+    }
+    function startAuto() {
+      stopAuto();
+      autoTimer = setInterval(function () {
+        if (!mq.matches) { return; }
+        goTo((current + 1) % cards.length);
+      }, 5000);
+    }
+    function pauseAuto() {
+      stopAuto();
+      if (resumeTimer) { clearTimeout(resumeTimer); }
+      resumeTimer = setTimeout(startAuto, 8000);
+    }
+    var scrollTimer;
+    grid.addEventListener('scroll', function () {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(function () {
+        var mid = grid.getBoundingClientRect().left + grid.clientWidth / 2;
+        var closest = 0, closestDist = Infinity;
+        cards.forEach(function (card, i) {
+          var r = card.getBoundingClientRect();
+          var dist = Math.abs((r.left + r.width / 2) - mid);
+          if (dist < closestDist) { closestDist = dist; closest = i; }
+        });
+        setActive(closest);
+      }, 100);
+    }, { passive: true });
+    grid.addEventListener('touchstart', pauseAuto, { passive: true });
+    function handleMq(e) { if (e.matches) { startAuto(); } else { stopAuto(); } }
+    if (mq.addEventListener) { mq.addEventListener('change', handleMq); }
+    else if (mq.addListener) { mq.addListener(handleMq); }
+    if (mq.matches) { startAuto(); }
   })();
 
   // Contact form isn't wired to a backend yet (see the comment above the
