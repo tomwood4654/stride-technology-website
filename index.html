@@ -104,6 +104,36 @@
   }
   .link-cta:hover { color: var(--gold); }
 
+  /* Mobile sticky CTA -- flips between "See pricing" while browsing the service
+     offering and "Get in touch" from the About section onward, hidden over the
+     hero and over #contact itself. Replaces the Foundation card's own mobile
+     "See pricing" button, which this supersedes. Desktop is unaffected --
+     display:none outside the phone breakpoint below. */
+  .home-sticky-cta { display: none; }
+  @media (max-width: 780px) {
+    .home-sticky-cta {
+      display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+      justify-content: center; padding: 0.8rem 1.2rem calc(0.8rem + env(safe-area-inset-bottom));
+      background: color-mix(in srgb, var(--paper) 92%, transparent);
+      backdrop-filter: blur(6px); border-top: 1px solid var(--line);
+      opacity: 0; transform: translateY(100%); pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    .home-sticky-cta.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .home-sticky-cta a {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      width: 100%; max-width: 22rem;
+      font-family: 'Bitter', serif; font-weight: 700; font-size: 0.95rem;
+      padding: 0.7rem 1.4rem; border-radius: 4px; text-decoration: none;
+      transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+    }
+    .home-sticky-cta a:active { transform: scale(0.97); }
+    .home-sticky-cta a.mode-pricing { background: var(--gold); color: var(--ink); }
+    .home-sticky-cta a.mode-pricing:hover { background: var(--gold-bright); }
+    .home-sticky-cta a.mode-contact { background: var(--charcoal); color: var(--charcoal-ink); }
+    .home-sticky-cta a.mode-contact:hover { background: var(--gold-bright); color: var(--ink); }
+  }
+
   @keyframes rise { to { opacity: 1; transform: translateY(0); } }
 
   @media (prefers-reduced-motion: reduce) {
@@ -417,7 +447,7 @@
   </div>
 </header>
 
-<section class="hero">
+<section class="hero" data-cta="hidden">
   <div class="wrap hero-grid">
     <div class="hero-text">
       <h1>Technology that moves your business forward.</h1>
@@ -430,7 +460,7 @@
   </div>
 </section>
 
-<section id="what" class="alt">
+<section id="what" class="alt" data-cta="pricing">
   <div class="wrap reveal">
     <div class="eyebrow">What we do</div>
     <h2>We make technology work for your business.</h2>
@@ -459,7 +489,6 @@
             </ul>
           </div>
           <p class="svc-value">Turn more people looking at your website into real enquiries — backed by reviews people trust.</p>
-          <a class="svc-pricing-bottom" href="pricing.html#foundation">See pricing →</a>
         </div>
       </details>
 
@@ -554,7 +583,7 @@
   </div>
 </section>
 
-<section id="how">
+<section id="how" data-cta="pricing">
   <div class="wrap reveal">
     <div class="eyebrow">How it works</div>
     <h2>From scratch, or a step up</h2>
@@ -580,7 +609,7 @@
   </div>
 </section>
 
-<section id="why" class="alt">
+<section id="why" class="alt" data-cta="contact">
   <div class="wrap reveal">
     <div class="eyebrow">About</div>
     <h2>Built from both sides of the divide</h2>
@@ -600,7 +629,7 @@
   </div>
 </section>
 
-<section id="examples">
+<section id="examples" data-cta="contact">
   <div class="wrap reveal">
     <div class="eyebrow">Examples</div>
     <h2>See it for yourself</h2>
@@ -638,7 +667,7 @@
   </div>
 </section>
 
-<section id="contact">
+<section id="contact" data-cta="hidden">
   <div class="wrap reveal">
     <div class="eyebrow">Get in touch</div>
     <h2>Let's have a chat</h2>
@@ -672,7 +701,7 @@
       <div class="contact-right">
         <iframe class="location-map" src="https://www.google.com/maps?q=51.1761001,-0.0068029&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="STRIDE's location"></iframe>
         <h3>Based in Lingfield</h3>
-        <p>Oast House, New Farm Place<br>Lingfield, RH7 6EF</p>
+        <p>Station Road, Lingfield</p>
       </div>
     </div>
   </div>
@@ -687,7 +716,7 @@
           <span>STRIDE</span>
         </div>
         <p class="tagline">Technology that moves your business forward.</p>
-        <p class="footer-address">Oast House, New Farm Place<br>Lingfield, RH7 6EF</p>
+        <p class="footer-address">Station Road, Lingfield</p>
       </div>
       <div class="footer-col">
         <h4>Quick links</h4>
@@ -722,6 +751,10 @@
     </div>
   </div>
 </footer>
+
+<div class="home-sticky-cta">
+  <a id="home-sticky-cta-link" href="pricing.html">See pricing →</a>
+</div>
 
 <script>
   var els = document.querySelectorAll('.reveal');
@@ -902,6 +935,57 @@
       if (mq.matches) { startAuto(); }
     }
     function handleMq(e) { if (e.matches && visible) { startAuto(); } else { stopAuto(); } }
+    if (mq.addEventListener) { mq.addEventListener('change', handleMq); }
+    else if (mq.addListener) { mq.addListener(handleMq); }
+  })();
+
+  // Homepage mobile sticky CTA. Flips between "See pricing" while browsing
+  // the service offering (#what, #how) and "Get in touch" from the About
+  // section onward (#why, #examples) -- hidden over the hero (nothing to
+  // react to yet) and over #contact itself (the form is already right
+  // there). Each section's intended mode lives on it as data-cta, so this
+  // just watches which section is most visible and reads its attribute off
+  // rather than hard-coding a lookup table here.
+  (function () {
+    var bar = document.querySelector('.home-sticky-cta');
+    var link = document.getElementById('home-sticky-cta-link');
+    var sections = Array.prototype.slice.call(document.querySelectorAll('[data-cta]'));
+    if (!bar || !link || !sections.length || !window.matchMedia || !window.IntersectionObserver) { return; }
+    var mq = window.matchMedia('(max-width: 780px)');
+    var ratios = new Map();
+    sections.forEach(function (s) { ratios.set(s, 0); });
+
+    function currentMode() {
+      var best = null, bestRatio = 0;
+      sections.forEach(function (s) {
+        var r = ratios.get(s) || 0;
+        if (r > bestRatio) { bestRatio = r; best = s; }
+      });
+      return best ? best.getAttribute('data-cta') : 'hidden';
+    }
+    function apply() {
+      if (!mq.matches) { bar.classList.remove('is-visible'); return; }
+      var mode = currentMode();
+      if (mode === 'pricing') {
+        link.href = 'pricing.html';
+        link.textContent = 'See pricing →';
+        link.className = 'mode-pricing';
+        bar.classList.add('is-visible');
+      } else if (mode === 'contact') {
+        link.href = '#contact';
+        link.textContent = 'Get in touch →';
+        link.className = 'mode-contact';
+        bar.classList.add('is-visible');
+      } else {
+        bar.classList.remove('is-visible');
+      }
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { ratios.set(e.target, e.intersectionRatio); });
+      apply();
+    }, { threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] });
+    sections.forEach(function (s) { io.observe(s); });
+    function handleMq() { apply(); }
     if (mq.addEventListener) { mq.addEventListener('change', handleMq); }
     else if (mq.addListener) { mq.addListener(handleMq); }
   })();
