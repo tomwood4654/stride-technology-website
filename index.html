@@ -171,7 +171,20 @@
   /* display:block + list-style:none + the webkit rule together kill the disclosure
      triangle across Chrome, Firefox and older Safari. */
   .svc-head { display: block; padding: 1.5rem 1.7rem 0; list-style: none; position: relative; }
+  /* Solid gold pill -- deliberately a real button, not the underlined text-link
+     style used elsewhere on the page, so "go find out what this costs" reads as
+     a first-class action rather than a footnote. */
+  .svc-pricing-top, .svc-pricing-bottom {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-family: 'Bitter', serif; font-weight: 700; font-size: 0.82rem;
+    color: var(--ink); text-decoration: none; background: var(--gold);
+    border-radius: 999px; padding: 0.45rem 1rem; line-height: 1;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .svc-pricing-top:hover, .svc-pricing-bottom:hover { background: var(--gold-bright); }
+  .svc-pricing-top:active, .svc-pricing-bottom:active { transform: scale(0.96); }
   .svc-pricing-top { display: none; }
+  .svc-pricing-bottom { margin-top: 1.1rem; }
   .svc-head::-webkit-details-marker { display: none; }
   .svc-tagrow { display: flex; align-items: center; gap: 0.7rem; }
   .svc-icon { width: 26px; height: 26px; display: block; flex: none; }
@@ -214,12 +227,9 @@
     /* Nothing to expand on desktop -- stop the summary swallowing clicks as a toggle. */
     .svc-head { pointer-events: none; }
     .svc-pricing-top {
-      display: inline-block; position: absolute; top: 1.5rem; right: 1.7rem;
-      pointer-events: auto; font-family: 'Bitter', serif; font-weight: 700;
-      font-size: 0.82rem; color: var(--ink); text-decoration: none;
-      border-bottom: 2px solid var(--gold); padding-bottom: 0.1rem;
+      display: inline-flex; position: absolute; top: 1.4rem; right: 1.7rem;
+      pointer-events: auto;
     }
-    .svc-pricing-top:hover { color: var(--gold); }
     .svc-pricing-bottom { display: none; }
     /* The three add-on cards hold different amounts of copy, so the gold value bar
        needs to sit at a fixed spot at the bottom of every card regardless of how
@@ -449,7 +459,7 @@
             </ul>
           </div>
           <p class="svc-value">Turn more people looking at your website into real enquiries — backed by reviews people trust.</p>
-          <a class="link-cta svc-pricing-bottom" href="pricing.html#foundation" style="margin-top:0.9rem; font-size:0.85rem;">See pricing →</a>
+          <a class="svc-pricing-bottom" href="pricing.html#foundation">See pricing →</a>
         </div>
       </details>
 
@@ -482,7 +492,7 @@
               </ul>
             </div>
             <p class="svc-value">More bookings, fewer missed appointments, less time on the phone.</p>
-            <a class="link-cta svc-pricing-bottom" href="pricing.html#booking" style="margin-top:0.9rem; font-size:0.85rem;">See pricing →</a>
+            <a class="svc-pricing-bottom" href="pricing.html#booking">See pricing →</a>
           </div>
         </details>
 
@@ -508,7 +518,7 @@
               </ul>
             </div>
             <p class="svc-value">Make paying easy for your customers — and spend less time chasing payments.</p>
-            <a class="link-cta svc-pricing-bottom" href="pricing.html#payments" style="margin-top:0.9rem; font-size:0.85rem;">See pricing →</a>
+            <a class="svc-pricing-bottom" href="pricing.html#payments">See pricing →</a>
           </div>
         </details>
 
@@ -535,7 +545,7 @@
               </ul>
             </div>
             <p class="svc-value">Less time on admin. More time focused on growing your business.</p>
-            <a class="link-cta svc-pricing-bottom" href="pricing.html#automation" style="margin-top:0.9rem; font-size:0.85rem;">See pricing →</a>
+            <a class="svc-pricing-bottom" href="pricing.html#automation">See pricing →</a>
           </div>
         </details>
 
