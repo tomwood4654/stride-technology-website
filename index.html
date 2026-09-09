@@ -72,6 +72,13 @@
     font-size: 1.12rem; color: var(--ink-dim);
     opacity: 0; transform: translateY(14px); animation: rise 0.7s 0.26s ease forwards;
   }
+  .hero .promise {
+    margin-top: 1rem; display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: 'Bitter', serif; font-weight: 700; font-size: 0.98rem;
+    color: var(--gold-dark, var(--gold));
+    opacity: 0; transform: translateY(14px); animation: rise 0.7s 0.34s ease forwards;
+  }
+  .hero .promise .tick { color: var(--gold); font-size: 1.05em; }
   .hero .cta {
     margin-top: 2.1rem; display: inline-flex; align-items: center; gap: 0.5rem;
     font-family: 'Bitter', serif; font-weight: 700; font-size: 0.98rem;
@@ -93,6 +100,7 @@
     .hero-grid { grid-template-columns: 1fr; gap: 1.8rem; text-align: center; }
     .hero-illus { max-width: 300px; }
     .hero .sub { margin-left: auto; margin-right: auto; }
+    .hero .promise { margin-left: auto; margin-right: auto; }
     .hero .cta { margin-left: auto; margin-right: auto; }
   }
 
@@ -452,6 +460,7 @@
     <div class="hero-text">
       <h1>Technology that moves your business forward.</h1>
       <p class="sub">Every small business deserves the technology big companies take for granted. We bring those same advantages to businesses like yours — made simple.</p>
+      <p class="promise"><span class="tick">✓</span> We build it first — you only pay if you want to keep it.</p>
       <a class="cta" href="#what">See what we do ↓</a>
     </div>
     <div class="hero-illus-wrap">
